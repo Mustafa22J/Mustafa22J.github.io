@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mustafa Jawish - Portfolio</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 </head>
 <body>
+
+  <!-- Particles Canvas -->
+  <canvas id="particles-canvas"></canvas>
 
   <!-- Navigation -->
   <nav>
@@ -152,62 +157,78 @@
       <div class="projects-grid">
 
         <div class="project-card">
-          <h3>Linux System Automation</h3>
-          <p>Automated user management, permissions handling, and system backups using Bash scripting.</p>
-          <p><strong>Impact:</strong> Reduced manual tasks by 70%.</p>
-          <p><strong>Technologies:</strong> Linux, Bash</p>
-          <a href="https://github.com/Mustafa22J/Linux_System_Automation" class="btn">View on GitHub</a>
+          <div class="project-content">
+            <h3>Linux System Automation</h3>
+            <p>Automated user management, permissions handling, and system backups using Bash scripting.</p>
+            <p><strong>Impact:</strong> Reduced manual tasks by 70%.</p>
+            <p><strong>Technologies:</strong> Linux, Bash</p>
+            <a href="https://github.com/Mustafa22J/Linux_System_Automation" class="btn">View on GitHub</a>
+          </div>
         </div>
 
         <div class="project-card">
-          <h3>Library Management System</h3>
-          <p>Designed a book borrowing and return tracking system using object-oriented programming principles.</p>
-          <p><strong>Technologies:</strong> Java, OOP, File I/O</p>
-          <a href="https://github.com/Mustafa22J/Library_Management_System" class="btn">View on GitHub</a>
+          <div class="project-content">
+            <h3>Library Management System</h3>
+            <p>Designed a book borrowing and return tracking system using object-oriented programming principles.</p>
+            <p><strong>Technologies:</strong> Java, OOP, File I/O</p>
+            <a href="https://github.com/Mustafa22J/Library_Management_System" class="btn">View on GitHub</a>
+          </div>
         </div>
 
         <div class="project-card">
-          <h3>Online Shopping System</h3>
-          <p>Implemented a shopping cart, order management, and secure payment system with JUnit testing.</p>
-          <p><strong>Technologies:</strong> Java, JUnit, OOP</p>
-          <a href="https://github.com/Mustafa22J/Online_Shopping_System" class="btn">View on GitHub</a>
+          <div class="project-content">
+            <h3>Online Shopping System</h3>
+            <p>Implemented a shopping cart, order management, and secure payment system with JUnit testing.</p>
+            <p><strong>Technologies:</strong> Java, JUnit, OOP</p>
+            <a href="https://github.com/Mustafa22J/Online_Shopping_System" class="btn">View on GitHub</a>
+          </div>
         </div>
 
         <div class="project-card">
-          <h3>Book Management System</h3>
-          <p>Developed an interactive multi-page website with dynamic content fetching and database integration.</p>
-          <p><strong>Technologies:</strong> PHP, SQL, JavaScript, AJAX</p>
-          <a href="https://github.com/Mustafa22J/Book_Management_System" class="btn">View on GitHub</a>
-          <a href="http://127.0.0.1/Book_Management_System/index.php" class="btn">View Live Demo</a>
+          <div class="project-content">
+            <h3>Book Management System</h3>
+            <p>Developed an interactive multi-page website with dynamic content fetching and database integration.</p>
+            <p><strong>Technologies:</strong> PHP, SQL, JavaScript, AJAX</p>
+            <a href="https://github.com/Mustafa22J/Book_Management_System" class="btn">View on GitHub</a>
+            <a href="http://127.0.0.1/Book_Management_System/index.php" class="btn">View Live Demo</a>
+          </div>
         </div>
 
         <div class="project-card">
-          <h3>Data Structures & Algorithms Library</h3>
-          <p>Implemented a custom LinkedList processing system with insertion, deletion, and traversal functions.</p>
-          <p><strong>Technologies:</strong> Java, Data Structures, Linked Lists</p>
-          <a href="https://github.com/Mustafa22J/Data_Structures_Library" class="btn">View on GitHub</a>
+          <div class="project-content">
+            <h3>Data Structures & Algorithms Library</h3>
+            <p>Implemented a custom LinkedList processing system with insertion, deletion, and traversal functions.</p>
+            <p><strong>Technologies:</strong> Java, Data Structures, Linked Lists</p>
+            <a href="https://github.com/Mustafa22J/Data_Structures_Library" class="btn">View on GitHub</a>
+          </div>
         </div>
 
         <div class="project-card">
-		  <h3>Area Calculator</h3>
-		  <p>Designed a **JavaScript-based Area Calculator** that computes the area of different shapes with an interactive UI.</p>
-		  <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
-		  <a href="https://github.com/Mustafa22J/Area-Calculator" class="btn" target="_blank">View Code</a>
-		</div>
+          <div class="project-content">
+            <h3>Area Calculator</h3>
+            <p>Designed a **JavaScript-based Area Calculator** that computes the area of different shapes with an interactive UI.</p>
+            <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+            <a href="https://github.com/Mustafa22J/Area-Calculator" class="btn" target="_blank">View Code</a>
+          </div>
+        </div>
 
-		<div class="project-card">
-		  <h3>Sudoku Solver</h3>
-		  <p>Implemented a **C program** that solves Sudoku puzzles using a **backtracking algorithm** for logic-based problem-solving.</p>
-		  <p><strong>Technologies:</strong> C, Algorithms, Backtracking</p>
-		  <a href="https://github.com/Mustafa22J/Sudoku-Solver" class="btn" target="_blank">View Code</a>
-		</div>
+        <div class="project-card">
+          <div class="project-content">
+            <h3>Sudoku Solver</h3>
+            <p>Implemented a **C program** that solves Sudoku puzzles using a **backtracking algorithm** for logic-based problem-solving.</p>
+            <p><strong>Technologies:</strong> C, Algorithms, Backtracking</p>
+            <a href="https://github.com/Mustafa22J/Sudoku-Solver" class="btn" target="_blank">View Code</a>
+          </div>
+        </div>
 
-		<div class="project-card">
-		  <h3>Circuit Analysis</h3>
-		  <p>Developed a **circuit analysis simulation** using **Multisim** to analyze and visualize electronic components and their interactions.</p>
-		  <p><strong>Technologies:</strong> Multisim, Electrical Engineering, Circuit Design</p>
-		  <a href="https://github.com/Mustafa22J/Circuit-Analysis" class="btn" target="_blank">View Project</a>
-		</div>
+        <div class="project-card">
+          <div class="project-content">
+            <h3>Circuit Analysis</h3>
+            <p>Developed a **circuit analysis simulation** using **Multisim** to analyze and visualize electronic components and their interactions.</p>
+            <p><strong>Technologies:</strong> Multisim, Electrical Engineering, Circuit Design</p>
+            <a href="https://github.com/Mustafa22J/Circuit-Analysis" class="btn" target="_blank">View Project</a>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -226,16 +247,16 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>&copy; 2025 Mustafa Jawish. All rights reserved.</p>
-      <div class="social-links">
-        <a href="https://linkedin.com/in/mustafa-jawish-959b45225" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/Mustafa22J/mustafa" target="_blank"><i class="fab fa-github"></i></a>
-      </div>
+  <div class="container">
+    <p>&copy; 2025 Mustafa Jawish. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/mustafa-jawish-959b45225" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/Mustafa22J/mustafa" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://profile.indeed.com/?hl=en_CA&co=CA&from=gnav-menu-homepage" target="_blank">
     </div>
-  </footer>
+  </div>
+</footer>
 
   <!-- Smooth Scrolling Script -->
   <script src="script.js"></script>
