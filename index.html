@@ -6,50 +6,104 @@
   <title>Mustafa Jawish - Portfolio</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#121212">
 </head>
 <body>
-
-  <!-- Particles Canvas -->
-  <canvas id="particles-canvas"></canvas>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+  
+  <!-- 3D Background Canvas -->
+  <canvas id="background-canvas"></canvas>
 
   <!-- Navigation -->
-  <nav>
+  <nav aria-label="Main Navigation">
     <div class="container">
-      <a href="#home" class="logo">MJ</a>
-      <ul class="nav-links">
+      <a href="#home" class="logo" aria-label="MJ - Back to Home">MJ</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation menu">
+        <span class="sr-only">Menu</span>
+        <span class="hamburger"></span>
+      </button>
+      <ul id="nav-links" class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <div class="theme-switcher">
+        <select id="theme-select" aria-label="Select theme">
+          <option value="default">Default</option>
+          <option value="cyberpunk">Cyberpunk</option>
+          <option value="space">Space</option>
+        </select>
+      </div>
     </div>
   </nav>
 
   <!-- Home Section -->
   <section id="home" class="hero">
     <div class="container">
-      <h1>Hi, I'm Mustafa Jawish</h1>
-      <p>Computer Engineering Student | Passionate about Programming, AI, and Web Development</p>
-      <div class="cta-buttons">
-        <a href="#projects" class="btn">View My Projects</a>
-        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      <div class="hero-content">
+        <h1 class="glitch-text" data-text="Hi, I'm Mustafa Jawish">Hi, I'm Mustafa Jawish</h1>
+        <p class="hero-subtitle">Networking Student at Algonquin with a Background in Computer Engineering | Passionate about Programming, AI & Web Development</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn magnetic-btn">View My Projects</a>
+          <a href="#contact" class="btn btn-outline magnetic-btn">Contact Me</a>
+        </div>
       </div>
+      <div class="hero-visual">
+        <div class="floating-tech-icons">
+          <i class="fab fa-java"></i>
+          <i class="fab fa-js"></i>
+          <i class="fab fa-php"></i>
+          <i class="fas fa-database"></i>
+          <i class="fab fa-linux"></i>
+          <i class="fas fa-network-wired"></i>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll Down</span>
+      <i class="fas fa-chevron-down"></i>
     </div>
   </section>
 
   <!-- About Section -->
   <section id="about" class="about">
     <div class="container">
-      <h2>About Me</h2>
+      <h2 class="section-title">About Me</h2>
       <div class="about-content">
-        <img src="Mustafa.jpg" alt="Mustafa Jawish" class="profile-img">
-        <p>
-          I’m a motivated Computer Engineering Technology student at Algonquin College with a passion for programming, AI, and web development. I specialize in building efficient and scalable applications, and I’m constantly learning new technologies to solve real-world problems. Through hands-on projects, I’ve developed strong skills in Java, Linux, and web development, and I’m eager to bring my problem-solving mindset to professional teams.
-        </p>
+        <div class="profile-container">
+          <img src="Mustafa.jpg" alt="Mustafa Jawish" class="profile-img">
+          <div class="profile-glow"></div>
+        </div>
+        <div class="about-text">
+          <p>
+            I'm currently a Computer Systems Technician – Networking student at Algonquin College, starting in May 2025. I previously studied Computer Engineering Technology, which gave me a strong foundation in programming, database systems, and web development. This transition has equipped me with both software and hardware proficiencies, enabling me to solve real-world IT and networking challenges across multiple platforms.
+          </p>
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <i class="fas fa-code"></i>
+              <h3>Software Development</h3>
+              <p>Building efficient, scalable applications with modern technologies</p>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-network-wired"></i>
+              <h3>Network Engineering</h3>
+              <p>Designing and implementing secure network infrastructures</p>
+            </div>
+            <div class="highlight-item">
+              <i class="fas fa-database"></i>
+              <h3>Database Management</h3>
+              <p>Creating optimized database solutions for various applications</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -57,179 +111,585 @@
   <!-- Skills Section -->
   <section id="skills" class="skills">
     <div class="container">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div class="skill">
-          <i class="fab fa-java"></i>
-          <p>Java</p>
-          <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+      <h2 class="section-title">Skills</h2>
+      
+      <div class="skills-visualization">
+        <div class="skills-chart-container">
+          <canvas id="skills-chart"></canvas>
         </div>
-        <div class="skill">
-          <i class="fab fa-js"></i>
-          <p>JavaScript</p>
-          <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
-        </div>
-        <div class="skill">
-          <i class="fab fa-php"></i>
-          <p>PHP</p>
-          <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
-        </div>
-        <div class="skill">
-          <i class="fas fa-database"></i>
-          <p>SQL</p>
-          <div class="progress-bar"><div class="progress" style="width: 88%;"></div></div>
-        </div>
-        <div class="skill">
-          <i class="fab fa-linux"></i>
-          <p>Linux</p>
-          <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+        
+        <div class="skills-categories">
+          <div class="skill-category active" data-category="programming">
+            <h3>Programming</h3>
+            <div class="skill-details">
+              <div class="skill">
+                <i class="fab fa-java"></i>
+                <p>Java</p>
+                <div class="progress-bar"><div class="progress" style="width: 99%;"></div></div>
+              </div>
+              <div class="skill">
+                <i class="fab fa-js"></i>
+                <p>JavaScript</p>
+                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+              </div>
+              <div class="skill">
+                <i class="fab fa-php"></i>
+                <p>PHP</p>
+                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skill-category" data-category="networking">
+            <h3>Networking</h3>
+            <div class="skill-details">
+              <div class="skill">
+                <i class="fas fa-network-wired"></i>
+                <p>Network Configuration</p>
+                <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+              </div>
+              <div class="skill">
+                <i class="fas fa-shield-alt"></i>
+                <p>Network Security</p>
+                <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
+              </div>
+              <div class="skill">
+                <i class="fas fa-project-diagram"></i>
+                <p>Routing & Switching</p>
+                <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skill-category" data-category="systems">
+            <h3>Systems</h3>
+            <div class="skill-details">
+              <div class="skill">
+                <i class="fab fa-linux"></i>
+                <p>Linux</p>
+                <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+              </div>
+              <div class="skill">
+                <i class="fas fa-server"></i>
+                <p>Windows Server</p>
+                <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
+              </div>
+              <div class="skill">
+                <i class="fas fa-database"></i>
+                <p>SQL</p>
+                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Education Section -->
+    <!-- Education Section -->
   <section id="education" class="education">
     <div class="container">
-      <h2>Education & Training</h2>
-      <div class="education-item">
-        <h3>Algonquin College | Computer Engineering Technology</h3>
-        <p><strong>Expected Graduation:</strong> 2026</p>
-        <p><strong>Focus Areas:</strong> Software Development, Systems Design, Web Applications</p>
-        <p><strong>Key Coursework:</strong></p>
-        <ul>
-          <li>Advanced Java Programming</li>
-          <li>Linux System Administration</li>
-          <li>Database Design & SQL</li>
-          <li>Web Development (PHP/JavaScript)</li>
-          <li>C Programming</li>
-          <li>R (Upcoming)</li>
-        </ul>
-      </div>
-
-      <!-- Completed Courses -->
-      <div class="coursework">
-        <h3>Completed Courses</h3>
-        <ul class="course-list">
-          <li>Math for Computer Science</li>
-          <li>Calculus 1</li>
-          <li>Operating Systems Fundamentals (GNU/Linux)</li>
-          <li>Object-Oriented Programming (Java)</li>
-          <li>Data Structures</li>
-          <li>Intro to Database</li>
-          <li>Networking Basics</li>
-          <li>Web Programming</li>
-          <li>Technical Communications</li>
-        </ul>
-      </div>
-
-      <!-- In-Progress Courses -->
-      <div class="coursework">
-        <h3>Currently Enrolled</h3>
-        <ul class="course-list">
-          <li>Java Application Programming</li>
-          <li>C Programming</li>
-          <li>Processor Architecture</li>
-        </ul>
-      </div>
-
-      <!-- Upcoming Courses -->
-      <div class="coursework">
-        <h3>Upcoming Courses</h3>
-        <ul class="course-list">
-          <li>Numerical Computing</li>
-          <li>Compilers</li>
-          <li>C++ Programming</li>
-          <li>Interfacing</li>
-          <li>Real-Time Programming</li>
-          <li>Software Design & Testing</li>
-          <li>Web Enterprise Applications</li>
-          <li>.NET Enterprise Application Development</li>
-        </ul>
+      <h2 class="section-title">Education & Training</h2>
+      
+      <div class="timeline">
+        <div class="timeline-track">
+          <!-- Current Education -->
+          <div class="timeline-node active">
+            <div class="node-indicator"></div>
+            <div class="node-content">
+              <div class="node-date">2025 - Present</div>
+              <h3>Computer Systems Technician – Networking (Co-op)</h3>
+              <h4>Algonquin College</h4>
+              <div class="node-details">
+                <p><strong>Focus Areas:</strong> Network Infrastructure, Linux/Windows System Administration, IT Service Management</p>
+                <button class="expand-btn" aria-expanded="false" aria-controls="courses-current">
+                  View Current Courses
+                </button>
+                <div id="courses-current" class="expandable-content">
+                  <ul class="course-list">
+                    <li>Networking Fundamentals</li>
+                    <li>Linux System Support</li>
+                    <li>Windows Desktop Support</li>
+                    <li>Achieving Success in Changing Environments</li>
+                    <li>Numeracy and Logic</li>
+                    <li>Communication Skills I</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Previous Education -->
+          <div class="timeline-node">
+            <div class="node-indicator"></div>
+            <div class="node-content">
+              <div class="node-date">2023 - 2025</div>
+              <h3>Computer Engineering Technology</h3>
+              <h4>Previous Institution</h4>
+              <div class="node-details">
+                <p>Completed foundational courses in programming, database systems, and web development.</p>
+                <button class="expand-btn" aria-expanded="false" aria-controls="courses-previous">
+                  View Completed Courses
+                </button>
+                <div id="courses-previous" class="expandable-content">
+                  <ul class="course-list">
+                    <li>Math for Computer Science</li>
+                    <li>Calculus 1</li>
+                    <li>Operating Systems Fundamentals (GNU/Linux)</li>
+                    <li>Object-Oriented Programming (Java)</li>
+                    <li>Data Structures</li>
+                    <li>Intro to Database</li>
+                    <li>Networking Basics</li>
+                    <li>Web Programming</li>
+                    <li>Technical Communications</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Future Education -->
+          <div class="timeline-node future">
+            <div class="node-indicator"></div>
+            <div class="node-content">
+              <div class="node-date">Upcoming</div>
+              <h3>Advanced Coursework</h3>
+              <h4>Algonquin College</h4>
+              <div class="node-details">
+                <p>Specialized courses focusing on advanced networking and system administration.</p>
+                <button class="expand-btn" aria-expanded="false" aria-controls="courses-future">
+                  View Upcoming Courses
+                </button>
+                <div id="courses-future" class="expandable-content">
+                  <ul class="course-list">
+                    <li>Routing and Switching</li>
+                    <li>GNU/Linux Server Administration</li>
+                    <li>Windows Domain Administration</li>
+                    <li>PC System Technology</li>
+                    <li>Technical Communication for Technicians</li>
+                    <li>Database Management and Interfacing</li>
+                    <li>Windows Enterprise Administration</li>
+                    <li>Network Services Administration</li>
+                    <li>Wireless Network Fundamentals</li>
+                    <li>Network Security</li>
+                    <li>Advanced Enterprise Networking</li>
+                    <li>Emerging Technologies</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
+  
   <!-- Projects Section -->
   <section id="projects" class="projects">
     <div class="container">
-      <h2>Projects</h2>
+      <h2 class="section-title">Projects</h2>
+      
+      <div class="project-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="java">Java</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="system">System</button>
+      </div>
+      
       <div class="projects-grid">
+        <!-- Crazy Eights Project -->
+        <div class="project-card" data-category="java">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fab fa-java"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
+          <div class="project-content">
+            <h3>Crazy Eights Multiplayer Game</h3>
+            <div class="project-tags">
+              <span>Java</span>
+              <span>Swing</span>
+              <span>MVC</span>
+              <span>Networking</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>A full-featured multiplayer card game with Swing GUI, network support, and MVC architecture.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Features</h4>
+                <p>Real-time multiplayer, chat system, multilingual support</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Implementation</h4>
+                <p>Built using Java Swing for the UI, implemented with MVC architecture for clean separation of concerns, and socket programming for network communication.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Challenges</h4>
+                <p>Synchronizing game state across multiple clients, handling disconnections gracefully, and implementing a responsive UI.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/CrazyEights-Multiplayer-Java" class="btn btn-sm" target="_blank">View on GitHub</a>
+            </div>
+          </div>
+        </div>
 
-        <div class="project-card">
+        <!-- Linux System Automation -->
+        <div class="project-card" data-category="system">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fab fa-linux"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
           <div class="project-content">
             <h3>Linux System Automation</h3>
-            <p>Automated user management, permissions handling, and system backups using Bash scripting.</p>
-            <p><strong>Impact:</strong> Reduced manual tasks by 70%.</p>
-            <p><strong>Technologies:</strong> Linux, Bash</p>
-            <a href="https://github.com/Mustafa22J/Linux_System_Automation" class="btn">View on GitHub</a>
+            <div class="project-tags">
+              <span>Linux</span>
+              <span>Bash</span>
+              <span>Automation</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>Automated user management, permissions handling, and system backups using Bash scripting.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Impact</h4>
+                <p>Reduced manual tasks by 70%.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Implementation</h4>
+                <p>Created a suite of Bash scripts to automate common system administration tasks, including user creation, permission management, and scheduled backups.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Features</h4>
+                <p>Batch user creation, role-based permission templates, incremental backups with rotation, and detailed logging.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/Linux_System_Automation" class="btn btn-sm" target="_blank">View on GitHub</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Library Management System -->
+        <div class="project-card" data-category="java">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
           <div class="project-content">
             <h3>Library Management System</h3>
-            <p>Designed a book borrowing and return tracking system using object-oriented programming principles.</p>
-            <p><strong>Technologies:</strong> Java, OOP, File I/O</p>
-            <a href="https://github.com/Mustafa22J/Library_Management_System" class="btn">View on GitHub</a>
+            <div class="project-tags">
+              <span>Java</span>
+              <span>OOP</span>
+              <span>File I/O</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>Designed a book borrowing and return tracking system using object-oriented programming principles.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Features</h4>
+                <p>Book catalog management, member registration, borrowing/returning functionality, and fine calculation.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Implementation</h4>
+                <p>Implemented using Java with a focus on OOP principles like inheritance, encapsulation, and polymorphism. Data persistence handled through file I/O.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/Library_Management_System" class="btn btn-sm" target="_blank">View on GitHub</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Online Shopping System -->
+        <div class="project-card" data-category="java">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
           <div class="project-content">
             <h3>Online Shopping System</h3>
-            <p>Implemented a shopping cart, order management, and secure payment system with JUnit testing.</p>
-            <p><strong>Technologies:</strong> Java, JUnit, OOP</p>
-            <a href="https://github.com/Mustafa22J/Online_Shopping_System" class="btn">View on GitHub</a>
+            <div class="project-tags">
+              <span>Java</span>
+              <span>JUnit</span>
+              <span>OOP</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>Implemented a shopping cart, order management, and secure payment system with JUnit testing.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Features</h4>
+                <p>Product catalog, shopping cart functionality, order processing, and payment simulation.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Testing</h4>
+                <p>Comprehensive JUnit tests for all core functionality, ensuring reliability and correctness.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/Online_Shopping_System" class="btn btn-sm" target="_blank">View on GitHub</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Book Management System -->
+        <div class="project-card" data-category="web">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
           <div class="project-content">
             <h3>Book Management System</h3>
-            <p>Developed an interactive multi-page website with dynamic content fetching and database integration.</p>
-            <p><strong>Technologies:</strong> PHP, SQL, JavaScript, AJAX</p>
-            <a href="https://github.com/Mustafa22J/Book_Management_System" class="btn">View on GitHub</a>
-            <a href="https://github.com/Mustafa22J/Book_Management_System/blob/main/screenshots/homepage.png" class="btn">View Live Demo</a>
+            <div class="project-tags">
+              <span>PHP</span>
+              <span>SQL</span>
+              <span>JavaScript</span>
+              <span>AJAX</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>Developed an interactive multi-page website with dynamic content fetching and database integration.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Features</h4>
+                <p>Book catalog with search and filter, user authentication, admin panel for inventory management.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Implementation</h4>
+                <p>Built with PHP backend, MySQL database, and AJAX for dynamic content loading without page refreshes.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/Book_Management_System" class="btn btn-sm" target="_blank">View on GitHub</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Data Structures Library -->
+        <div class="project-card" data-category="java">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
           <div class="project-content">
             <h3>Data Structures & Algorithms Library</h3>
-            <p>Implemented a custom LinkedList processing system with insertion, deletion, and traversal functions.</p>
-            <p><strong>Technologies:</strong> Java, Data Structures, Linked Lists</p>
-            <a href="https://github.com/Mustafa22J/Data_Structures_Library" class="btn">View on GitHub</a>
+            <div class="project-tags">
+              <span>Java</span>
+              <span>Data Structures</span>
+              <span>Algorithms</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>Implemented a custom LinkedList processing system with insertion, deletion, and traversal functions.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Features</h4>
+                <p>Custom implementations of LinkedList, Stack, Queue, and Binary Search Tree with various operations.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Performance</h4>
+                <p>Optimized for efficiency with time and space complexity analysis for each operation.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/Data_Structures_Library" class="btn btn-sm" target="_blank">View on GitHub</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Area Calculator -->
+        <div class="project-card" data-category="web">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
           <div class="project-content">
             <h3>Area Calculator</h3>
-            <p>Designed a **JavaScript-based Area Calculator** that computes the area of different shapes with an interactive UI.</p>
-            <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
-            <a href="https://github.com/Mustafa22J/Area-Calculator" class="btn" target="_blank">View Code</a>
+            <div class="project-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>Designed a JavaScript-based Area Calculator that computes the area of different shapes with an interactive UI.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Features</h4>
+                <p>Support for multiple geometric shapes, real-time calculation, and responsive design.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>UI/UX</h4>
+                <p>Interactive form elements with validation and visual feedback for user inputs.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/Area-Calculator" class="btn btn-sm" target="_blank">View Code</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Sudoku Solver -->
+        <div class="project-card" data-category="system">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fas fa-puzzle-piece"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
           <div class="project-content">
             <h3>Sudoku Solver</h3>
-            <p>Implemented a **C program** that solves Sudoku puzzles using a **backtracking algorithm** for logic-based problem-solving.</p>
-            <p><strong>Technologies:</strong> C, Algorithms, Backtracking</p>
-            <a href="https://github.com/Mustafa22J/Sudoku-Solver" class="btn" target="_blank">View Code</a>
+            <div class="project-tags">
+              <span>C</span>
+              <span>Algorithms</span>
+              <span>Backtracking</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>Implemented a C program that solves Sudoku puzzles using a backtracking algorithm for logic-based problem-solving.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Algorithm</h4>
+                <p>Recursive backtracking algorithm that efficiently explores possible solutions while pruning invalid paths.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Performance</h4>
+                <p>Optimized for speed with constraint propagation techniques to reduce the search space.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/Sudoku-Solver" class="btn btn-sm" target="_blank">View Code</a>
+            </div>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Circuit Analysis -->
+        <div class="project-card" data-category="system">
+          <div class="project-preview">
+            <div class="project-icon">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <div class="project-overlay">
+              <span class="view-details">View Details</span>
+            </div>
+          </div>
+          
           <div class="project-content">
             <h3>Circuit Analysis</h3>
-            <p>Developed a **circuit analysis simulation** using **Multisim** to analyze and visualize electronic components and their interactions.</p>
-            <p><strong>Technologies:</strong> Multisim, Electrical Engineering, Circuit Design</p>
-            <a href="https://github.com/Mustafa22J/Circuit-Analysis" class="btn" target="_blank">View Project</a>
+            <div class="project-tags">
+              <span>Multisim</span>
+              <span>Electrical Engineering</span>
+              <span>Circuit Design</span>
+            </div>
+            
+            <div class="project-summary">
+              <p>Developed a circuit analysis simulation using Multisim to analyze electronic components and their interactions.</p>
+            </div>
+            
+            <div class="project-details">
+              <div class="detail-section">
+                <h4>Features</h4>
+                <p>Simulation of various circuit types, component behavior analysis, and performance measurement.</p>
+              </div>
+              
+              <div class="detail-section">
+                <h4>Applications</h4>
+                <p>Used for educational purposes to demonstrate electronic principles and troubleshoot circuit designs.</p>
+              </div>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://github.com/Mustafa22J/Circuit-Analysis" class="btn btn-sm" target="_blank">View Project</a>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- GitHub Activity Section -->
+  <section id="github" class="github-activity">
+    <div class="container">
+      <h2 class="section-title">GitHub Activity</h2>
+      <div id="github-repos" class="github-repos-grid">
+        <div class="loading-indicator">
+          <div class="spinner"></div>
+          <p>Loading repositories...</p>
+        </div>
       </div>
     </div>
   </section>
@@ -237,27 +697,176 @@
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
-      <h2>Contact Me</h2>
-      <form id="contactForm" action="https://formspree.io/f/mvgzekab" method="POST">
-        <input type="text" id="name" name="name" placeholder="Your Name" required>
-        <input type="email" id="email" name="email" placeholder="Your Email" required>
-        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-        <button type="submit" class="btn">Send Message</button>
-      </form>
+      <h2 class="section-title">Contact Me</h2>
+      
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-method">
+            <i class="fas fa-envelope"></i>
+            <h3>Email</h3>
+            <p>ender201619@gmail.com</p>
+          </div>
+          <div class="contact-method">
+            <i class="fab fa-linkedin"></i>
+            <h3>LinkedIn</h3>
+            <p><a href="https://linkedin.com/in/mustafa-jawish-959b45225" target="_blank">mustafa-jawish-959b45225</a></p>
+          </div>
+          <div class="contact-method">
+            <i class="fab fa-github"></i>
+            <h3>GitHub</h3>
+            <p><a href="https://github.com/Mustafa22J" target="_blank">Mustafa22J</a></p>
+          </div>
+        </div>
+        
+        <form id="contactForm" action="https://formspree.io/f/mvgzekab" method="POST" class="contact-form">
+          <div class="form-group">
+            <label for="name" class="sr-only">Your Name</label>
+            <div class="input-container">
+              <i class="fas fa-user"></i>
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email" class="sr-only">Your Email</label>
+            <div class="input-container">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="message" class="sr-only">Your Message</label>
+            <div class="input-container">
+              <i class="fas fa-comment"></i>
+              <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-submit magnetic-btn">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume Section -->
+  <section id="resume" class="resume">
+    <div class="container">
+      <h2 class="section-title">Interactive Resume</h2>
+      <div class="resume-container">
+        <div class="resume-header">
+          <h3>Mustafa Jawish</h3>
+          <p>Computer Systems Technician – Networking Student</p>
+          <a href="Mustafa_CV.pdf" class="btn btn-outline" download>
+            <i class="fas fa-download"></i> Download PDF
+          </a>
+        </div>
+        
+        <div class="resume-content">
+          <div class="resume-section">
+            <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+            <div class="resume-item">
+              <h5>Computer Systems Technician – Networking</h5>
+              <p class="resume-meta">Algonquin College | 2025 - Present</p>
+              <p>Specializing in network infrastructure, system administration, and IT service management.</p>
+            </div>
+            <div class="resume-item">
+              <h5>Computer Engineering Technology</h5>
+              <p class="resume-meta">Previous Institution | 2023 - 2025</p>
+              <p>Focused on programming, database systems, and web development fundamentals.</p>
+            </div>
+          </div>
+          
+          <div class="resume-section">
+            <h4><i class="fas fa-laptop-code"></i> Technical Skills</h4>
+            <div class="resume-skills">
+              <div class="skill-cluster">
+                <h5>Programming Languages</h5>
+                <div class="skill-tags">
+                  <span>Java</span>
+                  <span>JavaScript</span>
+                  <span>PHP</span>
+                  <span>SQL</span>
+                  <span>C</span>
+                  <span>Bash</span>
+                </div>
+              </div>
+              <div class="skill-cluster">
+                <h5>Networking</h5>
+                <div class="skill-tags">
+                  <span>TCP/IP</span>
+                  <span>Routing</span>
+                  <span>Switching</span>
+                  <span>Network Security</span>
+                  <span>Wireless</span>
+                </div>
+              </div>
+              <div class="skill-cluster">
+                <h5>Systems</h5>
+                <div class="skill-tags">
+                  <span>Linux</span>
+                  <span>Windows Server</span>
+                  <span>Virtualization</span>
+                  <span>Database Management</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="resume-section">
+            <h4><i class="fas fa-project-diagram"></i> Key Projects</h4>
+            <div class="resume-item">
+              <h5>Crazy Eights Multiplayer Game</h5>
+              <p>A full-featured multiplayer card game with Swing GUI, network support, and MVC architecture.</p>
+            </div>
+            <div class="resume-item">
+              <h5>Linux System Automation</h5>
+              <p>Automated user management, permissions handling, and system backups using Bash scripting.</p>
+            </div>
+            <div class="resume-item">
+              <h5>Library Management System</h5>
+              <p>Designed a book borrowing and return tracking system using object-oriented programming principles.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
   <div class="container">
-    <p>&copy; 2025 Mustafa Jawish. All rights reserved.</p>
-    <div class="social-links">
-      <a href="https://linkedin.com/in/mustafa-jawish-959b45225" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/Mustafa22J" target="_blank"><i class="fab fa-github"></i></a>
+    <div class="footer-logo">
+      <span>MJ</span>
+      <p>&copy; 2025 Mustafa Jawish. All rights reserved.</p>
+    </div>
+    <div class="back-to-top">
+      <a href="#home" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+      </a>
     </div>
   </div>
 </footer>
 
-  <!-- Smooth Scrolling Script -->
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed:', error);
+          });
+      });
+    }
+  </script>
+
+  <!-- Main Script -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

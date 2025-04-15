@@ -1,0 +1,21 @@
+{
+  "name": "Mustafa Jawish Portfolio",
+  "short_name": "MJ Portfolio",
+  "description": "Professional portfolio of Mustafa Jawish, Computer Systems Technician - Networking student",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#00ff88",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
