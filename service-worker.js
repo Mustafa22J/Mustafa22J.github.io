@@ -1,62 +1,49 @@
-// Service worker for Mustafa Jawish Portfolio
-const CACHE_NAME = 'portfolio-v1';
+const CACHE_NAME = 'network-portfolio-v3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/styles.css',
   '/script.js',
+  '/manifest.json',
   '/Mustafa.jpg',
-  '/Mustafa_CV.pdf',
-  '/manifest.json'
+  '/Mustafa_Jawish_IT_Networking_CV.pdf'
 ];
 
-// Install event - cache assets
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
   );
 });
 
-// Fetch event - serve from cache, fall back to network
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Cache hit - return response
         if (response) {
           return response;
         }
         
-        // Clone the request
-        const fetchRequest = event.request.clone();
-        
-        return fetch(fetchRequest).then(
-          response => {
-            // Check if valid response
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-            
-            // Clone the response
-            const responseToCache = response.clone();
-            
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-              
+        return fetch(event.request).then(response => {
+          if(!response || response.status !== 200 || response.type !== 'basic') {
             return response;
           }
-        );
+          
+          const responseToCache = response.clone();
+          
+          caches.open(CACHE_NAME)
+            .then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+            
+          return response;
+        });
       })
   );
 });
 
-// Activate event - clean up old caches
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   
