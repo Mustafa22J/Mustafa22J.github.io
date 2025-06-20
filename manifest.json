@@ -1,11 +1,11 @@
 {
-  "name": "Mustafa Jawish Portfolio",
-  "short_name": "MJ Portfolio",
-  "description": "Professional portfolio of Mustafa Jawish, Computer Systems Technician - Networking student",
+  "name": "Mustafa Jawish - Network Specialist",
+  "short_name": "Network Portfolio",
+  "description": "Portfolio of Mustafa Jawish, Networking and Systems Specialist",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#121212",
-  "theme_color": "#00ff88",
+  "background_color": "#0a1929",
+  "theme_color": "#00ffff",
   "icons": [
     {
       "src": "icons/icon-192x192.png",
