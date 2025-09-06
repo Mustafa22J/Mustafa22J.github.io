@@ -1050,20 +1050,12 @@ nav .nav-links a:hover::after {
   gap: 0.5rem;
 }
 
-/* Resume Section */
-.resume {
-  background: rgba(15, 30, 45, 0.6);
-  position: relative;
-}
-
-.resume-container {
-  background: var(--surface);
-  border-radius: var(--border-radius);
-  padding: var(--space-m);
-  max-width: 800px;
-  margin: 0 auto;
-  border: 1px solid rgba(var(--primary-color-rgb), 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+/* Resume Section Updates */
+.canadian-citizen {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0.5rem 0;
+  text-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .resume-header {
@@ -1071,15 +1063,22 @@ nav .nav-links a:hover::after {
   margin-bottom: var(--space-m);
   padding-bottom: var(--space-m);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
 .resume-header h3 {
   color: var(--primary-color);
   font-size: 1.8rem;
+  margin-bottom: 0.5rem;
 }
 
-.resume-section {
-  margin-bottom: var(--space-m);
+.resume-header p {
+  margin-bottom: 0.5rem;
+}
+
+.resume-content {
+  display: grid;
+  gap: var(--space-m);
 }
 
 .resume-section h4 {
@@ -1104,6 +1103,7 @@ nav .nav-links a:hover::after {
 .resume-item h5 {
   color: var(--text);
   font-size: 1.1rem;
+  margin-bottom: 0.25rem;
 }
 
 .resume-meta {
@@ -1112,12 +1112,22 @@ nav .nav-links a:hover::after {
   margin-bottom: 0.5rem;
 }
 
+.resume-skills {
+  display: grid;
+  gap: var(--space-m);
+}
+
 .skill-cluster {
-  margin-bottom: var(--space-s);
+  background: rgba(20, 40, 60, 0.3);
+  padding: var(--space-s);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.1);
 }
 
 .skill-cluster h5 {
-  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  margin-bottom: var(--space-xs);
+  font-size: 1rem;
 }
 
 .skill-tags {
@@ -1132,6 +1142,7 @@ nav .nav-links a:hover::after {
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
   font-size: 0.9rem;
+  border: 1px solid rgba(var(--primary-color-rgb), 0.2);
 }
 
 /* Contact Section */
