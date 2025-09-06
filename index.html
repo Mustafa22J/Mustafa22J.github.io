@@ -96,12 +96,12 @@
       <h2 class="section-title">$ whoami</h2>
       <div class="about-content">
         <div class="profile-container">
-          <img src="Mustafa.png" alt="Mustafa Jawish" class="profile-img">
+          <img src="Mustafa.jpg" alt="Mustafa Jawish" class="profile-img">
           <div class="profile-glow"></div>
         </div>
         <div class="about-text">
           <p>
-            I'm currently a Computer Systems Technician – Networking student at Algonquin College, started in May 2025. I previously studied Computer Engineering Technology-Computing Science, which gave me a strong foundation in programming, database systems, and web development. This transition has equipped me with both software and hardware proficiencies, enabling me to solve real-world IT and networking challenges across multiple platforms.
+            I'm currently a Computer Systems Technician – Networking student at Algonquin College, started in May 2025. I previously studied Computer Engineering Technology, which gave me a strong foundation in programming, database systems, and web development. This transition has equipped me with both software and hardware proficiencies, enabling me to solve real-world IT and networking challenges across multiple platforms.
           </p>
           <div class="about-highlights">
             <div class="highlight-item">
@@ -125,83 +125,88 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="skills">
-    <div class="container">
-      <h2 class="section-title">$ skills --metrics</h2>
+<!-- Skills Section -->
+<section id="skills" class="skills">
+  <div class="container">
+    <h2 class="section-title">$ skills --metrics</h2>
+    
+    <div class="skills-visualization">
+      <div class="skills-chart-container">
+        <canvas id="skills-chart"></canvas>
+      </div>
       
-      <div class="skills-visualization">
-        <div class="skills-chart-container">
-          <canvas id="skills-chart"></canvas>
+      <div class="skills-categories">
+        <div class="skill-category active" data-category="programming">
+          <h3>Programming</h3>
+          <div class="skill-details">
+            <div class="skill">
+              <i class="fab fa-java"></i>
+              <p>Java</p>
+              <div class="progress-bar"><div class="progress" style="width: 99%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fab fa-js"></i>
+              <p>JavaScript</p>
+              <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fab fa-php"></i>
+              <p>PHP</p>
+              <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+            </div>
+          </div>
         </div>
         
-        <div class="skills-categories">
-          <div class="skill-category active" data-category="programming">
-            <h3>Programming</h3>
-            <div class="skill-details">
-              <div class="skill">
-                <i class="fab fa-java"></i>
-                <p>Java</p>
-                <div class="progress-bar"><div class="progress" style="width: 99%;"></div></div>
-              </div>
-              <div class="skill">
-                <i class="fab fa-js"></i>
-                <p>JavaScript</p>
-                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
-              </div>
-              <div class="skill">
-                <i class="fab fa-php"></i>
-                <p>PHP</p>
-                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
-              </div>
+        <div class="skill-category" data-category="networking">
+          <h3>Networking</h3>
+          <div class="skill-details">
+            <div class="skill">
+              <i class="fas fa-network-wired"></i>
+              <p>Network Configuration</p>
+              <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fas fa-shield-alt"></i>
+              <p>Network Security</p>
+              <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fas fa-project-diagram"></i>
+              <p>Routing & Switching</p>
+              <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
             </div>
           </div>
-          
-          <div class="skill-category" data-category="networking">
-            <h3>Networking</h3>
-            <div class="skill-details">
-              <div class="skill">
-                <i class="fas fa-network-wired"></i>
-                <p>Network Configuration</p>
-                <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
-              </div>
-              <div class="skill">
-                <i class="fas fa-shield-alt"></i>
-                <p>Network Security</p>
-                <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
-              </div>
-              <div class="skill">
-                <i class="fas fa-project-diagram"></i>
-                <p>Routing & Switching</p>
-                <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
-              </div>
+        </div>
+        
+        <div class="skill-category" data-category="systems">
+          <h3>Systems</h3>
+          <div class="skill-details">
+            <div class="skill">
+              <i class="fab fa-linux"></i>
+              <p>Linux</p>
+              <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
             </div>
-          </div>
-          
-          <div class="skill-category" data-category="systems">
-            <h3>Systems</h3>
-            <div class="skill-details">
-              <div class="skill">
-                <i class="fab fa-linux"></i>
-                <p>Linux</p>
-                <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
-              </div>
-              <div class="skill">
-                <i class="fas fa-server"></i>
-                <p>Windows Server</p>
-                <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
-              </div>
-              <div class="skill">
-                <i class="fas fa-database"></i>
-                <p>SQL</p>
-                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
-              </div>
+            <div class="skill">
+              <i class="fas fa-server"></i>
+              <p>Windows Server</p>
+              <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fab fa-microsoft"></i>
+              <p>PowerShell</p>
+              <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fas fa-database"></i>
+              <p>SQL</p>
+              <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Education Section -->
   <section id="education" class="education">
@@ -301,7 +306,7 @@
     </div>
   </section>
   
-  <!-- Projects Section -->
+<!-- Projects Section -->
 <section id="projects" class="projects">
   <div class="container">
     <h2 class="section-title">$ projects --list</h2>
@@ -310,9 +315,104 @@
       <button class="filter-btn active" data-filter="all">All Projects</button>
       <button class="filter-btn" data-filter="networking">Networking</button>
       <button class="filter-btn" data-filter="system">System</button>
+      <button class="filter-btn" data-filter="scripting">Scripting</button>
     </div>
     
     <div class="projects-grid">
+      <!-- PowerShell User Management -->
+      <div class="project-card" data-category="scripting">
+        <div class="project-preview">
+          <div class="project-icon">
+            <i class="fab fa-windows"></i>
+          </div>
+          <div class="project-overlay">
+            <span class="view-details">View Details</span>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <h3>PowerShell User Management</h3>
+          <div class="project-tags">
+            <span>PowerShell</span>
+            <span>Automation</span>
+            <span>Active Directory</span>
+            <span>User Management</span>
+          </div>
+          
+          <div class="project-summary">
+            <p>Automated user account management system using PowerShell scripting.</p>
+          </div>
+          
+          <div class="project-details">
+            <div class="detail-section">
+              <h4>Features</h4>
+              <p>Bulk user creation, account modification, permission management, and reporting</p>
+            </div>
+            
+            <div class="detail-section">
+              <h4>Implementation</h4>
+              <p>Advanced PowerShell scripts with error handling and logging capabilities</p>
+            </div>
+            
+            <div class="detail-section">
+              <h4>Benefits</h4>
+              <p>Reduced administrative overhead by 80% and improved security compliance</p>
+            </div>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/Mustafa22J/PowerShell-User-Management" class="btn btn-sm" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Networking Configuration -->
+      <div class="project-card" data-category="networking">
+        <div class="project-preview">
+          <div class="project-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <div class="project-overlay">
+            <span class="view-details">View Details</span>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <h3>Networking Configuration</h3>
+          <div class="project-tags">
+            <span>Cisco</span>
+            <span>Routing</span>
+            <span>Switching</span>
+            <span>Security</span>
+          </div>
+          
+          <div class="project-summary">
+            <p>Comprehensive network configuration and security implementation.</p>
+          </div>
+          
+          <div class="project-details">
+            <div class="detail-section">
+              <h4>Infrastructure</h4>
+              <p>Multi-router and switch configuration with VLANs and access control</p>
+            </div>
+            
+            <div class="detail-section">
+              <h4>Security</h4>
+              <p>Firewall rules, access control lists, and secure management protocols</p>
+            </div>
+            
+            <div class="detail-section">
+              <h4>Verification</h4>
+              <p>Comprehensive testing and documentation of network functionality</p>
+            </div>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/Mustafa22J/Networking-Configuration" class="btn btn-sm" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+      
       <!-- Routing & Switching Configuration -->
       <div class="project-card" data-category="networking">
         <div class="project-preview">
@@ -357,42 +457,6 @@
           
           <div class="project-links">
             <a href="https://github.com/Mustafa22J/Routing-Switching-Configurations" class="btn btn-sm" target="_blank">View on GitHub</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Network Security Framework -->
-      <div class="project-card" data-category="networking">
-        <div class="project-preview">
-          <div class="project-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <div class="project-overlay">
-            <span class="view-details">View Details</span>
-          </div>
-        </div>
-        
-        <div class="project-content">
-          <h3>Network Security Framework</h3>
-          <div class="project-tags">
-            <span>Security</span>
-            <span>Firewall</span>
-            <span>Monitoring</span>
-          </div>
-          
-          <div class="project-summary">
-            <p>Designed a security monitoring system for network intrusion detection.</p>
-          </div>
-          
-          <div class="project-details">
-            <div class="detail-section">
-              <h4>Features</h4>
-              <p>Real-time threat detection, automated alerts, vulnerability scanning</p>
-            </div>
-          </div>
-          
-          <div class="project-links">
-            <a href="#" class="btn btn-sm" target="_blank">Case Study</a>
           </div>
         </div>
       </div>
@@ -862,4 +926,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
