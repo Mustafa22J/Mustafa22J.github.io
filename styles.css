@@ -579,6 +579,25 @@ nav .nav-links a:hover::after {
   flex: 1;
 }
 
+/* Canadian Citizenship - Simplified */
+.citizenship-simple {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.citizenship-simple h3 {
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: rgba(var(--primary-color-rgb), 0.1);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.3);
+  border-radius: var(--border-radius);
+}
+
 .about-highlights {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -610,6 +629,33 @@ nav .nav-links a:hover::after {
 .highlight-item h3 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments for About section */
+@media (max-width: 992px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-container {
+    margin-bottom: var(--space-m);
+  }
+  
+  .citizenship-simple {
+    margin: 1rem auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-img {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .about-highlights {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Skills Section */
