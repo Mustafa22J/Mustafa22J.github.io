@@ -55,7 +55,7 @@
             <i class="fas fa-server"></i>
             <div>
               <span class="stat-value">99.9%</span>
-              <span class="stat-label">Uptime</span>
+              <span class="stat-label">Reliability</span>
             </div>
           </div>
           <div class="stat-item">
@@ -69,7 +69,7 @@
             <i class="fas fa-bolt"></i>
             <div>
               <span class="stat-value">10Gbps</span>
-              <span class="stat-label">Throughput</span>
+              <span class="stat-label">Network Speed</span>
             </div>
           </div>
         </div>
@@ -91,39 +91,47 @@
   </section>
 
 <!-- About Section -->
-<section id="about" class="about">
+<section id="about" class="about" aria-labelledby="about-title">
   <div class="container">
-    <h2 class="section-title">$ whoami</h2>
+    <h2 id="about-title" class="section-title">$ whoami</h2>
     <div class="about-content">
       <div class="profile-container">
-        <img src="Mustafa.png" alt="Mustafa Jawish" class="profile-img">
+        <img src="Mustafa.png"
+             alt="Portrait of Mustafa Jawish, networking student and IT support specialist"
+             class="profile-img"
+             loading="lazy">
         <div class="profile-glow"></div>
       </div>
+
       <div class="about-text">
         <p>
-          I'm currently a Computer Systems Technician – Networking student at Algonquin College, started in May 2025. I previously studied Computer Engineering Technology, which gave me a strong foundation in programming, database systems, and web development. This transition has equipped me with both software and hardware proficiencies, enabling me to solve real-world IT and networking challenges across multiple platforms.
+          I’m a Computer Systems Technician – Networking student at Algonquin College (started May 2025),
+          focused on building, operating, and troubleshooting reliable small-to-medium IT networks.
+          I work across Cisco routing & switching, Windows Server/Active Directory, and Linux administration,
+          with hands-on labs and projects that mirror real environments.
         </p>
-        
-        <!-- Canadian Citizenship - Simplified -->
-        <div class="citizenship-simple">
+
+        <div class="citizenship-simple" aria-label="Citizenship">
           <h3>CANADIAN CITIZEN</h3>
         </div>
-        
-        <div class="about-highlights">
-          <div class="highlight-item">
-            <i class="fas fa-code"></i>
-            <h3>Software Development</h3>
-            <p>Building efficient, scalable applications with modern technologies</p>
+
+        <div class="about-highlights" role="list">
+          <div class="highlight-item" role="listitem">
+            <i class="fas fa-network-wired" aria-hidden="true"></i>
+            <h3>Networking</h3>
+            <p>VLANs, IP/DHCP/DNS, routing & switching, Wireshark analysis, Packet Tracer labs</p>
           </div>
-          <div class="highlight-item">
-            <i class="fas fa-network-wired"></i>
-            <h3>Network Engineering</h3>
-            <p>Designing and implementing secure network infrastructures</p>
+
+          <div class="highlight-item" role="listitem">
+            <i class="fas fa-server" aria-hidden="true"></i>
+            <h3>Systems Administration</h3>
+            <p>Windows Server & Active Directory, Linux (RHEL/Arch), VMware Workstation</p>
           </div>
-          <div class="highlight-item">
-            <i class="fas fa-database"></i>
-            <h3>Database Management</h3>
-            <p>Creating optimized database solutions for various applications</p>
+
+          <div class="highlight-item" role="listitem">
+            <i class="fas fa-terminal" aria-hidden="true"></i>
+            <h3>Scripting & Automation</h3>
+            <p>PowerShell & Bash for user management, configuration tasks, and documentation</p>
           </div>
         </div>
       </div>
@@ -251,7 +259,7 @@
           <div class="timeline-node">
             <div class="node-indicator"></div>
             <div class="node-content">
-              <div class="node-date">2023 - 2025</div>
+              <div class="node-date">2024 - 2025</div>
               <h3>Computer Engineering Technology</h3>
               <h4>Previous Institution</h4>
               <div class="node-details">
@@ -768,99 +776,133 @@
   </div>
 </section>
 
- <!-- Resume Section -->
+<!-- Resume Section -->
 <section id="resume" class="resume">
   <div class="container">
     <h2 class="section-title">$ resume --view</h2>
     <div class="resume-container">
       <div class="resume-header">
         <h3>Mustafa Jawish</h3>
-        <p>Computer Systems Technician – Networking Student</p>
+        <p>Networking & IT Support Specialist (Student)</p>
         <p class="canadian-citizen">Canadian Citizen</p>
         <a href="Mustafa_Jawish_IT_Networking_CV.pdf" class="btn btn-outline" download>
           <i class="fas fa-download"></i> Download PDF
         </a>
       </div>
-      
+
       <div class="resume-content">
+        <!-- Profile / Summary -->
         <div class="resume-section">
-          <h4><i class="fas fa-user"></i> Professional Summary</h4>
+          <h4><i class="fas fa-user"></i> Profile</h4>
           <div class="resume-item">
-            <p>Canadian citizen and motivated Computer Systems Technician student at Algonquin College, specializing in networking, IT support, and system administration. Experienced with Windows and Linux environments, network configuration, scripting, and troubleshooting. Passionate about helping users, maintaining system reliability, and growing in the field of network technology.</p>
+            <p>
+              Motivated Networking and IT Support Specialist with hands-on experience in Cisco routing and switching,
+              Windows Server, and Linux administration. Skilled in troubleshooting, automation (PowerShell/Bash), and
+              providing reliable system and network support. Passionate about infrastructure, virtualization, and
+              enterprise networking.
+            </p>
           </div>
         </div>
-        
+
+        <!-- Education -->
         <div class="resume-section">
           <h4><i class="fas fa-graduation-cap"></i> Education</h4>
           <div class="resume-item">
             <h5>Diploma in Computer Systems Technician – Networking</h5>
-            <p class="resume-meta">Algonquin College, Ottawa | 2026 (Expected)</p>
-            <p>Key Courses: Networking Essentials, Windows Server, Linux Admin, Network Security, Cisco Routing & Switching, Technical Support, Scripting (Bash/PowerShell)</p>
-          </div>
-          <div class="resume-item">
-            <h5>Computer Engineering Technology</h5>
-            <p class="resume-meta">Previous Institution | 2023 - 2025</p>
-            <p>Focused on programming, database systems, and web development fundamentals.</p>
+            <p class="resume-meta">Algonquin College, Ottawa | 2027 (Expected)</p>
+            <p>Key Courses: Networking Essentials, Windows Server, Linux Administration, Cisco Routing &amp; Switching, Technical Support, Scripting (Bash/PowerShell), Network Security</p>
           </div>
         </div>
-        
+
+        <!-- Skills (merged, aligned to resume) -->
         <div class="resume-section">
-          <h4><i class="fas fa-laptop-code"></i> Technical Skills</h4>
+          <h4><i class="fas fa-laptop-code"></i> Skills</h4>
           <div class="resume-skills">
             <div class="skill-cluster">
               <h5>Networking & IT Support</h5>
               <div class="skill-tags">
-                <span>Network Configuration (IP, DHCP, DNS, NAT)</span>
                 <span>Cisco Packet Tracer</span>
                 <span>Routing & Switching</span>
-                <span>Windows Server</span>
-                <span>Active Directory</span>
-                <span>PowerShell Scripting</span>
-                <span>Linux System Administration</span>
-                <span>Technical Support</span>
-                <span>Troubleshooting</span>
-                <span>Ticketing Systems</span>
+                <span>VLANs</span>
+                <span>IP / DHCP / DNS / NAT</span>
+                <span>Network Troubleshooting</span>
                 <span>Wireshark</span>
-                <span>Network Security</span>
               </div>
             </div>
+
             <div class="skill-cluster">
-              <h5>Programming & Scripting</h5>
+              <h5>Systems & Platforms</h5>
               <div class="skill-tags">
-                <span>Bash</span>
+                <span>Windows Server</span>
+                <span>Active Directory</span>
+                <span>Linux (RHEL/Arch)</span>
+                <span>VMware Workstation</span>
+                <span>Ticketing (GLPI, Spiceworks)</span>
+              </div>
+            </div>
+
+            <div class="skill-cluster">
+              <h5>Scripting & Tools</h5>
+              <div class="skill-tags">
                 <span>PowerShell</span>
+                <span>Bash</span>
+                <span>Git</span>
                 <span>Java</span>
                 <span>PHP</span>
                 <span>JavaScript</span>
                 <span>SQL</span>
-                <span>Git</span>
-                <span>JUnit</span>
-                <span>AJAX</span>
-                <span>Multisim</span>
               </div>
             </div>
           </div>
         </div>
-        
+
+        <!-- Experience -->
         <div class="resume-section">
-          <h4><i class="fas fa-project-diagram"></i> Key Projects</h4>
+          <h4><i class="fas fa-briefcase"></i> Experience</h4>
           <div class="resume-item">
-            <h5>Linux System Automation</h5>
-            <p>Automated user management, permissions handling, and system backups using Bash scripting.</p>
-          </div>
-          <div class="resume-item">
-            <h5>PowerShell User Management</h5>
-            <p>Automated user account management system using PowerShell scripting, including bulk user creation, account modification, and permission management.</p>
-          </div>
-          <div class="resume-item">
-            <h5>Networking Configuration</h5>
-            <p>Comprehensive network configuration and security implementation using Cisco devices, including routing, switching, and firewall rules.</p>
-          </div>
-          <div class="resume-item">
-            <h5>Routing & Switching Configurations</h5>
-            <p>Simulated network configuration with routers, switches and end devices using Cisco Packet Tracer.</p>
+            <h5>Chef / Kitchen Team Lead</h5>
+            <p class="resume-meta">Pita Bell Kabab, Ottawa | 2017 – 2019</p>
+            <ul>
+              <li>Managed kitchen operations and coordinated staff to deliver timely, high-quality service during peak hours.</li>
+              <li>Upheld food safety and cleanliness standards; trained and supervised staff.</li>
+              <li>Built strong teamwork, time-management, and reliability in a fast-paced environment.</li>
+            </ul>
           </div>
         </div>
+
+        <!-- Projects (with 2025 timelines, most-recent first) -->
+        <div class="resume-section">
+          <h4><i class="fas fa-project-diagram"></i> Key Projects (2025)</h4>
+
+          <div class="resume-item">
+            <h5>Routing &amp; Switching Configurations</h5>
+            <p class="resume-meta">Sep 2025 – Oct 2025</p>
+            <p>Simulated multi-device networks implementing VLANs, static/dynamic routing, and network troubleshooting in Cisco Packet Tracer.</p>
+            <p><a href="https://github.com/Mustafa22J/Routing-Switching-Configurations" target="_blank" rel="noopener">View on GitHub</a></p>
+          </div>
+
+          <div class="resume-item">
+            <h5>Networking Configuration</h5>
+            <p class="resume-meta">Apr 2025 – Aug 2025</p>
+            <p>Configured routers, switches, VLANs, DHCP/DNS, and firewall rules in Cisco Packet Tracer to simulate enterprise networks.</p>
+            <p><a href="https://github.com/Mustafa22J/Networking-Configuration" target="_blank" rel="noopener">View on GitHub</a></p>
+          </div>
+
+          <div class="resume-item">
+            <h5>PowerShell User Management</h5>
+            <p class="resume-meta">Apr 2025 – Aug 2025</p>
+            <p>Developed PowerShell scripts for bulk account creation and permissions, reducing setup time by ~70%.</p>
+            <p><a href="https://github.com/Mustafa22J/PowerShell-User-Management" target="_blank" rel="noopener">View on GitHub</a></p>
+          </div>
+
+          <div class="resume-item">
+            <h5>Linux System Automation</h5>
+            <p class="resume-meta">Apr 2025 – Aug 2025</p>
+            <p>Automated user management and backups using Bash scripting to improve efficiency and reliability.</p>
+            <p><a href="https://github.com/Mustafa22J/Linux_System_Automation" target="_blank" rel="noopener">View on GitHub</a></p>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
