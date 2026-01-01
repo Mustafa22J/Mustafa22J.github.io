@@ -859,7 +859,7 @@ nav .nav-links a:hover::after {
   display: flex;
   align-items: center;
   padding: 0;
-  font-family: var(--font-body);
+  font-family: var(--font-terminal);
   font-size: 0.9rem;
   margin-top: var(--space-xs);
 }
@@ -876,14 +876,39 @@ nav .nav-links a:hover::after {
   transform: rotate(180deg);
 }
 
+/* Accordion wrapper */
 .expandable-content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-in-out;
 }
 
+/* When expanded, allow enough space + let the inner list scroll */
 .expandable-content.expanded {
-  max-height: 500px;
+  max-height: 1000px; /* big enough so it doesn't cut the animation */
+}
+
+/* Make long course lists scrollable (so they never get hidden) */
+.expandable-content .course-list {
+  max-height: 360px;     /* adjust: 300–450px based on your preference */
+  overflow-y: auto;
+  padding-right: 8px;    /* space for scrollbar */
+}
+
+/* Divider item inside the list (works with your <li class="divider">) */
+.course-list .divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 10px 0;
+  padding: 0;
+  border: 0;
+}
+
+/* IMPORTANT: prevent timeline cards from clipping dropdown content */
+.timeline-node,
+.node-content,
+.node-details {
+  overflow: visible;
 }
 
 .course-list {

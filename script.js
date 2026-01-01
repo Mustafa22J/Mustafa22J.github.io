@@ -331,19 +331,42 @@ function initSkillChart() {
 
 function initExpandButtons() {
   const expandBtns = document.querySelectorAll('.expand-btn');
-  
+
   expandBtns.forEach(btn => {
     const targetId = btn.getAttribute('aria-controls');
     const targetContent = document.getElementById(targetId);
-    
+
     if (!targetContent) return;
-    
+
+    // Start collapsed
     btn.setAttribute('aria-expanded', 'false');
-    
+    targetContent.classList.remove('expanded');
+    targetContent.style.maxHeight = '0px';
+
     btn.addEventListener('click', () => {
       const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !isExpanded);
-      targetContent.classList.toggle('expanded');
+
+      if (isExpanded) {
+        // Collapse
+        btn.setAttribute('aria-expanded', 'false');
+        targetContent.classList.remove('expanded');
+        targetContent.style.maxHeight = '0px';
+      } else {
+        // Expand
+        btn.setAttribute('aria-expanded', 'true');
+        targetContent.classList.add('expanded');
+
+        // Set maxHeight to the exact content height so nothing gets cut
+        targetContent.style.maxHeight = targetContent.scrollHeight + 'px';
+      }
+    });
+
+    // Keep height correct on resize (mobile / font scaling)
+    window.addEventListener('resize', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        targetContent.style.maxHeight = targetContent.scrollHeight + 'px';
+      }
     });
   });
 }
