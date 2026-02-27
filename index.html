@@ -149,7 +149,98 @@
         <canvas id="skills-chart"></canvas>
       </div>
       
-      <div class="skills-categories">
+      <div class="skills-categories">        
+        <div class="skill-category" data-category="networking">
+          <h3>Networking</h3>
+          <div class="skill-details">
+            <div class="skill">
+              <i class="fas fa-network-wired"></i>
+              <p>Network Configuration</p>
+              <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+            </div>
+			<div class="skill">
+			  <i class="fas fa-server"></i>
+			  <p>DNS (BIND / dig)</p>
+			  <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+			</div>
+
+			<div class="skill">
+			  <i class="fas fa-shield-alt"></i>
+			  <p>Firewalling (iptables)</p>
+			  <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+			</div>
+
+			<div class="skill">
+			  <i class="fas fa-terminal"></i>
+			  <p>SSH Hardening (Keys)</p>
+			  <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+			</div>
+            <div class="skill">
+              <i class="fas fa-shield-alt"></i>
+              <p>Network Security</p>
+              <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fas fa-project-diagram"></i>
+              <p>Routing & Switching</p>
+              <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-category" data-category="systems">
+          <h3>Systems</h3>
+          <div class="skill-details">
+			<div class="skill">
+				<i class="fas fa-envelope"></i>
+				<p>Exchange Server</p>
+				<div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
+			</div>
+
+			<div class="skill">
+				<i class="fas fa-sitemap"></i>
+				<p>Group Policy (GPO)</p>
+				<div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+			</div>
+            <div class="skill">
+              <i class="fab fa-linux"></i>
+              <p>Linux</p>
+              <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fas fa-server"></i>
+              <p>Windows Server</p>
+              <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+            </div>
+			<div class="skill">
+			  <i class="fas fa-tools"></i>
+			  <p>Hardware Diagnostics</p>
+			  <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+			</div>
+
+			<div class="skill">
+			  <i class="fas fa-microchip"></i>
+			  <p>BIOS/UEFI & POST</p>
+			  <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+			</div>
+
+			<div class="skill">
+			  <i class="fas fa-hdd"></i>
+			  <p>RAID Setup & Validation</p>
+			  <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
+			</div>
+            <div class="skill">
+              <i class="fab fa-microsoft"></i>
+              <p>PowerShell</p>
+              <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill">
+              <i class="fas fa-database"></i>
+              <p>SQL</p>
+              <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+            </div>
+          </div>
+        </div>
         <div class="skill-category active" data-category="programming">
           <h3>Programming</h3>
           <div class="skill-details">
@@ -166,53 +257,6 @@
             <div class="skill">
               <i class="fab fa-php"></i>
               <p>PHP</p>
-              <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="skill-category" data-category="networking">
-          <h3>Networking</h3>
-          <div class="skill-details">
-            <div class="skill">
-              <i class="fas fa-network-wired"></i>
-              <p>Network Configuration</p>
-              <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
-            </div>
-            <div class="skill">
-              <i class="fas fa-shield-alt"></i>
-              <p>Network Security</p>
-              <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
-            </div>
-            <div class="skill">
-              <i class="fas fa-project-diagram"></i>
-              <p>Routing & Switching</p>
-              <div class="progress-bar"><div class="progress" style="width: 65%;"></div></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="skill-category" data-category="systems">
-          <h3>Systems</h3>
-          <div class="skill-details">
-            <div class="skill">
-              <i class="fab fa-linux"></i>
-              <p>Linux</p>
-              <div class="progress-bar"><div class="progress" style="width: 75%;"></div></div>
-            </div>
-            <div class="skill">
-              <i class="fas fa-server"></i>
-              <p>Windows Server</p>
-              <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
-            </div>
-            <div class="skill">
-              <i class="fab fa-microsoft"></i>
-              <p>PowerShell</p>
-              <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
-            </div>
-            <div class="skill">
-              <i class="fas fa-database"></i>
-              <p>SQL</p>
               <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
             </div>
           </div>
@@ -539,6 +583,54 @@
         </div>
       </div>
 
+	<!-- NEW: Linux Network Services (SSH + Firewall + DNS) -->
+		<div class="project-card" data-category="system">
+		  <div class="project-preview">
+			<div class="project-icon">
+			  <i class="fab fa-linux"></i>
+			</div>
+			<div class="project-overlay">
+			  <span class="view-details">View Details</span>
+			</div>
+		  </div>
+
+		  <div class="project-content">
+			<h3>Linux Network Services (SSH + Firewall + DNS)</h3>
+			<div class="project-tags">
+			  <span>Linux</span>
+			  <span>SSH</span>
+			  <span>iptables</span>
+			  <span>BIND</span>
+			  <span>Network Security</span>
+			</div>
+
+			<div class="project-summary">
+			  <p>
+				Implemented secure SSH authentication, custom firewall policies using iptables,
+				and an authoritative DNS forward zone using BIND in a structured SBA-style lab environment.
+			  </p>
+			</div>
+
+			<div class="project-details">
+			  <div class="detail-section">
+				<h4>Security Focus</h4>
+				<p>Password &amp; public-key SSH authentication, controlled port access (TCP 16389), rule ordering validation.</p>
+			  </div>
+
+			  <div class="detail-section">
+				<h4>Infrastructure</h4>
+				<p>RHEL 8 server, static IP + alias, BIND forward zone (snappy.lab), dig verification, service validation using ss, nc, iptables.</p>
+			  </div>
+			</div>
+
+			<div class="project-links">
+			  <a href="https://github.com/Mustafa22J/Linux-Network-Services" class="btn btn-sm" target="_blank" rel="noopener">
+				View on GitHub
+			  </a>
+			</div>
+		  </div>
+		</div>
+
       <!-- NEW: DHCP Snooping Security Lab -->
       <div class="project-card" data-category="networking">
         <div class="project-preview">
@@ -661,6 +753,102 @@
           </div>
         </div>
       </div>
+	  
+	  <!-- NEW: Dual Domain Exchange Implementation (CST8342) -->
+		<div class="project-card" data-category="system">
+		<div class="project-preview">
+			<div class="project-icon">
+			<i class="fas fa-envelope-open-text"></i>
+			</div>
+			<div class="project-overlay">
+			<span class="view-details">View Details</span>
+			</div>
+		</div>
+
+		<div class="project-content">
+			<h3>Dual Domain Exchange Implementation</h3>
+			<div class="project-tags">
+			<span>Active Directory</span>
+			<span>Windows Server 2022</span>
+			<span>DNS</span>
+			<span>Exchange 2019</span>
+			<span>GPO</span>
+			</div>
+
+			<div class="project-summary">
+			<p>
+				Built two independent forests with Exchange 2019, DNS (A/MX/autodiscover), SMTP/POP/IMAP validation, OWA testing, and a kiosk-style GPO lockdown for a restricted user.
+			</p>
+			</div>
+
+			<div class="project-details">
+			<div class="detail-section">
+				<h4>Core Services</h4>
+				<p>AD DS, DNS Forward/Reverse zones, Exchange 2019, SMTP (25), POP/IMAP, OWA.</p>
+			</div>
+
+			<div class="detail-section">
+				<h4>Validation</h4>
+				<p>nslookup (name/IP), telnet to port 25 (220 ESMTP), Thunderbird mail flow, OWA send/receive.</p>
+			</div>
+
+			<div class="detail-section">
+				<h4>Security</h4>
+				<p>GPO “Sue Lockdown” with security filtering: Thunderbird-only kiosk restrictions (Task Manager/Control Panel/Run/Registry blocked).</p>
+			</div>
+			</div>
+
+			<div class="project-links">
+			<a href="https://github.com/Mustafa22J/windows-dual-domain-exchange-lab" class="btn btn-sm" target="_blank" rel="noopener">
+				View on GitHub
+			</a>
+			</div>
+		</div>
+		</div>
+
+		<!-- NEW: PC Enterprise Hardware Diagnostics -->
+		<div class="project-card" data-category="system">
+		  <div class="project-preview">
+			<div class="project-icon">
+			  <i class="fas fa-tools"></i>
+			</div>
+			<div class="project-overlay">
+			  <span class="view-details">View Details</span>
+			</div>
+		  </div>
+
+		  <div class="project-content">
+			<h3>PC Enterprise Hardware Diagnostics</h3>
+
+			<div class="project-tags">
+			  <span>BIOS/UEFI</span>
+			  <span>POST</span>
+			  <span>RAID</span>
+			  <span>Desktop Service</span>
+			  <span>Windows Troubleshooting</span>
+			</div>
+
+			<div class="project-summary">
+			  <p>Enterprise-style PC troubleshooting documentation covering BIOS/POST diagnosis, RAID setup validation, Windows logoff/shutdown investigation, and safe desktop teardown/rebuild workflows.</p>
+			</div>
+
+			<div class="project-details">
+			  <div class="detail-section">
+				<h4>Diagnosis Workflow</h4>
+				<p>Minimum-boot isolation, RAM testing, storage detection checks, boot mode alignment (UEFI/Legacy), and verification-driven troubleshooting.</p>
+			  </div>
+
+			  <div class="detail-section">
+				<h4>Service Procedures</h4>
+				<p>ESD-safe teardown/rebuild, cable verification, component reseating, BIOS validation, and repeatable testing steps.</p>
+			  </div>
+			</div>
+
+			<div class="project-links">
+			  <a href="https://github.com/Mustafa22J/PC-Enterprise-Hardware-Diagnostics" class="btn btn-sm" target="_blank" rel="noopener">View on GitHub</a>
+			</div>
+		  </div>
+		</div>
 
       <!-- NEW: PC Systems Technology Hardware Labs -->
       <div class="project-card" data-category="system">
@@ -972,6 +1160,7 @@
       <div class="resume-header">
         <h3>Mustafa Jawish</h3>
         <p>IT Networking & System Support Technician (Student)</p>
+		<p class="resume-meta">Available for 8-month Co-op (May–December 2026)</p>
         <p class="canadian-citizen">Canadian Citizen</p>
         <a href="Mustafa_Jawish_IT_Networking_CV.pdf" class="btn btn-outline" download>
           <i class="fas fa-download"></i> Download PDF
@@ -984,13 +1173,24 @@
           <h4><i class="fas fa-user"></i> Profile</h4>
           <div class="resume-item">
             <p>
-              Motivated IT Networking & System Support Technician with hands-on experience in Cisco routing and switching,
-              Windows Server administration, Linux systems, virtualization, scripting, and network security. Strong troubleshooting
-              and documentation skills, with practical experience from enterprise-style labs and projects. Currently seeking a
-              2-semester full-time co-op from May–December 2026 in networking, system administration, or IT support roles.
+              Motivated IT Networking & System Support Technician with hands-on experience designing and troubleshooting enterprise-style lab environments across Windows Server, Linux, and Cisco networking platforms. Experienced in Active Directory, DNS, Exchange, VLAN segmentation, firewall configuration, and hardware diagnostics. Strong problem-solving mindset with structured troubleshooting methodology and professional documentation practices. Seeking a full-time co-op (May–December 2026) in networking, system administration, or IT support roles.
             </p>
           </div>
         </div>
+
+		<!-- Technical Highlights -->
+		<div class="resume-section">
+		  <h4><i class="fas fa-star"></i> Technical Highlights</h4>
+		  <div class="resume-item">
+			<ul>
+			  <li>Deployed dual Active Directory forests with Exchange 2019 and validated SMTP/POP/IMAP/OWA mail flow.</li>
+			  <li>Implemented secure Linux services (SSH hardening, iptables firewall rules, BIND DNS forward zones).</li>
+			  <li>Designed multi-VLAN Cisco networks with DHCP Snooping and security controls.</li>
+			  <li>Performed structured BIOS/POST hardware diagnostics and RAID configuration validation.</li>
+			  <li>Built VMware-based enterprise lab environments for Windows and Linux infrastructure testing.</li>
+			</ul>
+		  </div>
+		</div>
 
         <!-- Education -->
         <div class="resume-section">
@@ -1017,6 +1217,18 @@
                 <span>Wireshark</span>
               </div>
             </div>
+
+			<div class="skill-cluster">
+			  <h5>Security & Infrastructure</h5>
+			  <div class="skill-tags">
+				<span>Exchange 2019</span>
+				<span>SMTP / POP / IMAP</span>
+				<span>DNS (BIND / Windows)</span>
+				<span>Firewall (iptables)</span>
+				<span>Group Policy (GPO)</span>
+				<span>RAID Configuration</span>
+			  </div>
+			</div>
 
             <div class="skill-cluster">
               <h5>Systems & Platforms</h5>
@@ -1087,6 +1299,17 @@
             <p>Configured a full Windows Server domain including AD DS, DNS, DHCP, Group Policy, IIS, WDS deployment, and AD CS, using VMware-based lab infrastructure.</p>
             <p><a href="https://github.com/Mustafa22J/windows-domain-admin-labs" target="_blank" rel="noopener">View on GitHub</a></p>
           </div>
+		  
+		  <div class="resume-item">
+			<h5>Windows Enterprise – Dual Domain Exchange 2019 (CST8342)</h5>
+			<p class="resume-meta">Jan 2026 – Feb 2026</p>
+			<p>
+				Deployed two independent Windows Server 2022 forests, each hosting AD DS, DNS, and Exchange 2019. Configured mail + autodiscover DNS records, validated SMTP/POP/IMAP and OWA, and applied a kiosk-style GPO lockdown for a restricted user account.
+			</p>
+			<p>
+				<a href="https://github.com/Mustafa22J/windows-dual-domain-exchange-lab" target="_blank" rel="noopener">View on GitHub</a>
+			</p>
+		</div>
 
           <div class="resume-item">
             <h5>Linux Server Automation &amp; Containers</h5>
