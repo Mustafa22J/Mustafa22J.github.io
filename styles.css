@@ -109,7 +109,7 @@ nav .container { display:flex; justify-content:space-between; align-items:center
 .btn:hover { transform:translateY(-3px); box-shadow:0 5px 20px var(--primary-glow); }
 
 /* Sections */
-section { padding:5rem 0; }
+section { padding:4rem 0; }
 .section-title { 
   font-family:var(--font-mono); 
   font-size:2rem; 
@@ -612,4 +612,83 @@ footer .container {
   .menu-toggle { display:block; }
   .about-content { flex-direction:column; text-align:center; }
   .skills-visualization { flex-direction:column; }
+}
+
+/* 📱 MOBILE OPTIMIZATION (REAL FIX) */
+@media (max-width: 768px) {
+
+  /* Reduce section spacing */
+  section {
+    padding: 3rem 0;
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: 60px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+  }
+
+  .typed-wrapper {
+    font-size: 1.2rem;
+  }
+
+  /* Stats cards */
+  .network-stats {
+    gap: 1rem;
+  }
+
+  .stat-item {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  /* About text */
+  .about-text {
+    font-size: 0.95rem;
+  }
+
+  /* Cards (projects, skills, resume) */
+  .project-card,
+  .resume-section,
+  .skill-category {
+    padding: 1rem;
+  }
+
+  /* Timeline */
+  .timeline-node {
+    padding-left: 60px;
+  }
+
+  .node-indicator {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Skills chart */
+  .skills-chart-container {
+    padding: 1rem;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Contact form */
+  .contact-form {
+    padding: 1.5rem;
+  }
+
 }
