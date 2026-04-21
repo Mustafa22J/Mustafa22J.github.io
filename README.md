@@ -1,44 +1,21 @@
-# Hi, I'm Mustafa Jawish 👋
+# Mustafa Jawish — Network Engineer & Systems Architect
 
-I’m a **Computer Systems Technician – Networking** student at Algonquin College with a strong foundation in **Computer Engineering Technology**. I’m passionate about solving real-world problems through **programming, AI**, and **web development**. My journey blends both hardware and software perspectives, allowing me to tackle IT and networking challenges across multiple platforms.
+[![GitHub](https://img.shields.io/github/followers/Mustafa22J?style=social)](https://github.com/Mustafa22J)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/mustafa-jawish-959b45225)
 
----
+I design, automate, and secure IT infrastructure. Currently pursuing **Computer Systems Technician – Networking** at Algonquin College.
 
-## 🔧 Technologies & Tools
+## 🔧 Core Competencies
+- **Networking:** Cisco IOS, OSPF, BGP, VLANs, Wireshark
+- **Systems:** Windows Server, Active Directory, Exchange, Linux, VMware
+- **Automation:** PowerShell, Bash, Python
 
-**Languages:**  
-Java • JavaScript • PHP • SQL • C • Bash  
+## 🚀 Featured Work
+- [Enterprise Networking Labs](https://github.com/Mustafa22J/Enterprise_Networking_Labs)
+- [Windows Dual‑Domain Exchange](https://github.com/Mustafa22J/windows-dual-domain-exchange-lab)
+- [Linux Server & Containers](https://github.com/Mustafa22J/Linux-server-admin-containers-labs)
 
-**Web Development:**  
-HTML • CSS • JavaScript • AJAX • jQuery  
-
-**Tools & Platforms:**  
-Linux • Git • VS Code • Windows Server • Multisim  
-
----
-
-## 🚀 Featured Projects
-
-🔹 **[Linux System Automation](https://github.com/Mustafa22J/Linux_System_Automation)**  
-Automated user management, permissions handling, and system backups using Bash scripting.
-
-🔹 **[Library Management System](https://github.com/Mustafa22J/Library_Management_System)**  
-A Java-based book borrowing and return tracking system using object-oriented design.
-
-🔹 **[Crazy Eights Multiplayer Game](https://github.com/Mustafa22J/CrazyEights-Multiplayer-Java)**  
-Multiplayer card game with real-time networking, chat system, and GUI using Java Swing and MVC.
-
-🔹 **[Portfolio Website](https://mustafa22j.github.io/)**  
-A dynamic personal website with a futuristic UI showcasing my projects, education, and skills.
-
----
-
-## 📫 Connect With Me
-
-- 🔗 [LinkedIn](https://linkedin.com/in/mustafa-jawish-959b45225)  
-- 📧 Email: ender201619@gmail.com  
-- 💻 GitHub: [Mustafa22J](https://github.com/Mustafa22J)
-
----
-
-⭐️ From [Mustafa22J](https://github.com/Mustafa22J)
+## 📫 Connect
+- Email: mustafajawish28@gmail.com
+- LinkedIn: [mustafa-jawish](https://linkedin.com/in/mustafa-jawish-959b45225)
+- GitHub: [Mustafa22J](https://github.com/Mustafa22J)

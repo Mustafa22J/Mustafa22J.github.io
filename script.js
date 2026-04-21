@@ -1,519 +1,262 @@
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-  initNetworkBackground();
+  initPreloader();
+  initLightweightNetwork();
   initCustomCursor();
   initMagneticButtons();
-  initTerminalEffects();
-  initSkillAnimations();
+  initTypedEffect();
+  initStatCounters();
+  initSkillChart();
+  initSkillProgressBars();
   initExpandButtons();
-  initProjects();
-  initFormEffects();
+  initProjectsFilterAndDetails();
   initMobileMenu();
   initScrollAnimations();
-  initSkillChart();
+  initScrollProgress();
+  initCsProjectsToggle();
 });
 
-function initNetworkBackground() {
+function initPreloader() {
+  const preloader = document.getElementById('preloader');
+  if (preloader) setTimeout(() => { preloader.style.opacity = '0'; setTimeout(() => preloader.style.display = 'none', 500); }, 1200);
+}
+
+// LIGHTWEIGHT 3D (no per-frame geometry rebuild)
+function initLightweightNetwork() {
   const canvas = document.getElementById('network-canvas');
   if (!canvas) return;
-  
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ 
-    canvas,
-    alpha: true,
-    antialias: true
-  });
-  
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  
-  // Create network nodes
-  const nodeGeometry = new THREE.SphereGeometry(0.1, 8, 8);
-  const nodeMaterial = new THREE.MeshBasicMaterial({ 
-    color: 0x00ffff,
-    transparent: true,
-    opacity: 0.7
-  });
+  renderer.toneMappingExposure = 1.3;
   
   const nodes = [];
-  const nodeCount = 100;
-  
+  const nodeCount = 80; // reduced
+  const geometry = new THREE.SphereGeometry(0.1, 6, 6);
+	const material = new THREE.MeshStandardMaterial({
+	  color: 0x00f2ff,
+	  emissive: 0x00f2ff,
+	  emissiveIntensity: 1.2
+	});
   for (let i = 0; i < nodeCount; i++) {
-    const node = new THREE.Mesh(nodeGeometry, nodeMaterial.clone());
-    // Spread nodes across larger area
-    const spreadX = (Math.random() - 0.5) * 100;
-    const spreadY = (Math.random() - 0.5) * 100;
-    const spreadZ = (Math.random() - 0.5) * 100;
-    
-    node.position.set(
-      spreadX,
-      spreadY,
-      spreadZ
-    );
+    const node = new THREE.Mesh(geometry, material);
+    node.position.set((Math.random() - 0.5) * 100, (Math.random() - 0.5) * 60, (Math.random() - 0.5) * 60);
     nodes.push(node);
     scene.add(node);
   }
-  
-  // Create connections
-  const connections = [];
-  const connectionMaterial = new THREE.LineBasicMaterial({
-    color: 0x0088ff,
-    transparent: true,
-    opacity: 0.2
-  });
-  
+  // static connections (no updates)
   for (let i = 0; i < nodeCount; i++) {
-    for (let j = i + 1; j < nodeCount; j++) {
-      const distance = nodes[i].position.distanceTo(nodes[j].position);
-      // Increase connection distance threshold
-      if (distance < 20) {
-        const geometry = new THREE.BufferGeometry().setFromPoints([
-          nodes[i].position,
-          nodes[j].position
-        ]);
-        const connection = new THREE.Line(geometry, connectionMaterial);
-        connections.push({
-          line: connection,
-          node1: i,
-          node2: j
-        });
-        scene.add(connection);
+    for (let j = i+1; j < nodeCount; j++) {
+      if (nodes[i].position.distanceTo(nodes[j].position) < 18) {
+        const points = [nodes[i].position, nodes[j].position];
+        const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
+		const lineMat = new THREE.LineBasicMaterial({
+		  color: 0x00f2ff,
+		  transparent: true,
+		  opacity: 0.35   // MUCH stronger
+		});
+        scene.add(new THREE.Line(lineGeo, lineMat));
       }
     }
   }
+  const light = new THREE.AmbientLight(0x222233);
+  scene.add(light);
+  camera.position.z = 45;
   
-  // Add floating particles
-  const particleGeometry = new THREE.BufferGeometry();
-  const particleCount = 500;
-  const posArray = new Float32Array(particleCount * 3);
-  
-  for (let i = 0; i < particleCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 100; // Spread particles wider
-  }
-  
-  particleGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-  
-  const particleMaterial = new THREE.PointsMaterial({
-    size: 0.05,
-    color: 0x00ffff,
-    transparent: true,
-    opacity: 0.3
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = (e.clientY / window.innerHeight) * 2 - 1;
   });
-  
-  const particles = new THREE.Points(particleGeometry, particleMaterial);
-  scene.add(particles);
-  
-  camera.position.z = 40; // Move camera back to see more
-  
-  // Mouse movement effect
-  let mouseX = 0;
-  let mouseY = 0;
-  
-  document.addEventListener('mousemove', (event) => {
-    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-  });
-  
-  // Animation loop
   function animate() {
     requestAnimationFrame(animate);
-    
-    // Move nodes slower for calmer effect
-    nodes.forEach(node => {
-      node.position.x += (Math.random() - 0.5) * 0.005;
-      node.position.y += (Math.random() - 0.5) * 0.005;
-      node.position.z += (Math.random() - 0.5) * 0.005;
-    });
-    
-    // Update connections
-    connections.forEach(conn => {
-      const node1 = nodes[conn.node1];
-      const node2 = nodes[conn.node2];
-      const distance = node1.position.distanceTo(node2.position);
-      
-      conn.line.geometry.dispose();
-      conn.line.geometry = new THREE.BufferGeometry().setFromPoints([
-        node1.position,
-        node2.position
-      ]);
-      
-      // Adjust opacity based on distance
-      const opacity = Math.max(0.1, 0.5 - distance / 30);
-      conn.line.material.opacity = opacity;
-    });
-    
-    // Rotate particles
-    particles.rotation.x += 0.001;
-    particles.rotation.y += 0.001;
-    
-    // Camera follow mouse
-    camera.position.x += (mouseX * 5 - camera.position.x) * 0.02;
-    camera.position.y += (mouseY * 5 - camera.position.y) * 0.02;
+    camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
+    camera.position.y += (mouseY * 3 - camera.position.y) * 0.05;
     camera.lookAt(scene.position);
-    
     renderer.render(scene, camera);
   }
-  
   animate();
-  
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  });
+  window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 }
 
 function initCustomCursor() {
   const cursor = document.querySelector('.custom-cursor');
+  const trail = document.querySelector('.cursor-trail');
   if (!cursor) return;
-  
-  document.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, {
-      x: e.clientX,
-      y: e.clientY,
-      duration: 0.05, // Faster cursor movement
-      ease: 'power1.out'
-    });
-  });
-  
-  const interactiveElements = document.querySelectorAll('a, button, .btn, .project-card, .skill-category h3');
-  
-  interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.classList.add('cursor-hover');
-    });
-    
-    el.addEventListener('mouseleave', () => {
-      cursor.classList.remove('cursor-hover');
-    });
-  });
-  
-  document.addEventListener('mouseleave', () => {
-    cursor.style.display = 'none';
-  });
-  
-  document.addEventListener('mouseenter', () => {
-    cursor.style.display = 'block';
+  let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+  document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.05 }); });
+  function animateTrail() { trailX += (mouseX - trailX) * 0.2; trailY += (mouseY - trailY) * 0.2; if(trail) gsap.set(trail, { x: trailX, y: trailY }); requestAnimationFrame(animateTrail); }
+  animateTrail();
+  document.querySelectorAll('a, button, .btn, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
   });
 }
 
 function initMagneticButtons() {
-  const magneticBtns = document.querySelectorAll('.magnetic-btn');
-  
-  magneticBtns.forEach(btn => {
+  document.querySelectorAll('.magnetic-btn').forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const moveX = (x - centerX) * 0.2;
-      const moveY = (y - centerY) * 0.2;
-      
-      gsap.to(btn, {
-        x: moveX,
-        y: moveY,
-        duration: 0.2, // Faster magnetic effect
-        ease: 'power2.out'
-      });
+      const x = e.clientX - rect.left - rect.width/2;
+      const y = e.clientY - rect.top - rect.height/2;
+      gsap.to(btn, { x: x*0.2, y: y*0.2, duration: 0.2 });
     });
-    
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, {
-        x: 0,
-        y: 0,
-        duration: 0.3, // Faster reset
-        ease: 'elastic.out(1, 0.3)'
-      });
-    });
+    btn.addEventListener('mouseleave', () => gsap.to(btn, { x: 0, y: 0, duration: 0.3 }));
   });
 }
 
-function initTerminalEffects() {
-  const terminalElements = document.querySelectorAll('.terminal-text, .terminal-command, .terminal-prompt');
-  
-  terminalElements.forEach(el => {
-    setInterval(() => {
-      if (Math.random() > 0.9) {
-        el.style.textShadow = `0 0 5px rgba(0, 255, 255, 0.8)`;
-        setTimeout(() => {
-          el.style.textShadow = '';
-        }, 100);
+function initTypedEffect() {
+  const el = document.getElementById('typed-text');
+  if(!el) return;
+  const words = ['sudo apt-get install future', 'network engineer', 'automation addict', 'cybersecurity enthusiast'];
+  let wi = 0, ci = 0;
+  function type() { if(ci < words[wi].length) { el.textContent += words[wi].charAt(ci); ci++; setTimeout(type, 90); } else setTimeout(erase, 2000); }
+  function erase() { if(ci > 0) { el.textContent = words[wi].substring(0, ci-1); ci--; setTimeout(erase, 40); } else { wi = (wi+1)%words.length; setTimeout(type, 200); } }
+  type();
+}
+
+function initStatCounters() {
+  document.querySelectorAll('.stat-item').forEach(stat => {
+    const target = parseFloat(stat.getAttribute('data-target'));
+    const span = stat.querySelector('.stat-value');
+    let current = 0;
+    const update = () => {
+      if(current < target) { current += Math.ceil(target/50); if(current>target) current=target; span.textContent = (target===10?current+'Gbps': target===256?current+'-bit': current+'%'); requestAnimationFrame(update); }
+    };
+    const observer = new IntersectionObserver(entries => { if(entries[0].isIntersecting) { update(); observer.disconnect(); } });
+    observer.observe(stat);
+  });
+}
+
+function initSkillProgressBars() {
+  document.querySelectorAll('.progress').forEach(bar => {
+
+    const finalWidth = bar.style.width; // get 95%, 90%, etc
+    const textSpan = bar.querySelector('.progress-text');
+
+    // start from 0
+    bar.style.width = '0%';
+    if (textSpan) textSpan.textContent = '0%';
+
+    let current = 0;
+    const target = parseInt(finalWidth);
+
+    const animateText = () => {
+      if (current < target) {
+        current++;
+        if (textSpan) textSpan.textContent = current + '%';
+        requestAnimationFrame(animateText);
       }
-    }, 1000);
-  });
-}
+    };
 
-function initSkillAnimations() {
-  const progressBars = document.querySelectorAll('.progress');
-  
-  ScrollTrigger.batch(progressBars, {
-    onEnter: batch => {
-      gsap.to(batch, {
-        width: element => element.style.width,
-        duration: 1, // Faster progress animation
-        ease: 'power2.out',
-        stagger: 0.1
-      });
-    },
-    start: "top 80%"
+    ScrollTrigger.create({
+      trigger: bar,
+      start: 'top 85%',
+      onEnter: () => {
+        gsap.to(bar, {
+          width: finalWidth,
+          duration: 1,
+          ease: "power2.out"
+        });
+        animateText();
+      }
+    });
   });
 }
 
 function initSkillChart() {
   const ctx = document.getElementById('skills-chart');
-  if (!ctx) return;
-  
-  const primaryColor = getComputedStyle(document.documentElement)
-    .getPropertyValue('--primary-color')
-    .trim();
-  
-  const primaryColorRgb = getComputedStyle(document.documentElement)
-    .getPropertyValue('--primary-color-rgb')
-    .trim();
-  
-  const skillsChart = new Chart(ctx, {
+  if(!ctx) return;
+  new Chart(ctx, {
     type: 'radar',
-    data: {
-      labels: ['Programming', 'Networking', 'Databases', 'Web Development', 'System Administration', 'Security'],
-      datasets: [{
-        label: 'Skill Level',
-        data: [90, 75, 85, 80, 70, 75],
-        backgroundColor: `rgba(${primaryColorRgb}, 0.2)`,
-        borderColor: primaryColor,
-        pointBackgroundColor: primaryColor,
-        pointBorderColor: '#0a1929',
-        pointHoverBackgroundColor: '#e0f7ff',
-        pointHoverBorderColor: primaryColor
-      }]
-    },
-    options: {
-      scales: {
-        r: {
-          angleLines: {
-            color: 'rgba(224, 247, 255, 0.1)'
-          },
-          grid: {
-            color: 'rgba(224, 247, 255, 0.1)'
-          },
-          pointLabels: {
-            color: '#e0f7ff',
-            font: {
-              size: 14,
-              family: "'Share Tech Mono', monospace"
-            }
-          },
-          ticks: {
-            backdropColor: 'transparent',
-            color: 'rgba(224, 247, 255, 0.5)',
-            z: 100
-          },
-          suggestedMin: 0,
-          suggestedMax: 100
-        }
-      },
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      responsive: true,
-      maintainAspectRatio: false
-    }
+    data: { labels: ['Programming','Networking','Databases','Web Dev','SysAdmin','Security'], datasets: [{ label: 'Skill Level', data: [85,82,78,80,86,75], backgroundColor: 'rgba(0,242,255,0.2)', borderColor: '#00f2ff', pointBackgroundColor: '#00f2ff', pointBorderColor: '#050b14' }] },
+    options: { scales: { r: { angleLines: { color: 'rgba(255,255,255,0.1)' }, grid: { color: 'rgba(255,255,255,0.1)' }, pointLabels: { color: '#eef5ff' }, ticks: { backdropColor: 'transparent', color: '#8aa9c9' } } }, plugins: { legend: { display: false } }, responsive: true, maintainAspectRatio: false }
   });
 }
 
 function initExpandButtons() {
-  const expandBtns = document.querySelectorAll('.expand-btn');
-
-  expandBtns.forEach(btn => {
-    const targetId = btn.getAttribute('aria-controls');
-    const targetContent = document.getElementById(targetId);
-
-    if (!targetContent) return;
-
-    // Start collapsed
-    btn.setAttribute('aria-expanded', 'false');
-    targetContent.classList.remove('expanded');
-    targetContent.style.maxHeight = '0px';
-
+  document.querySelectorAll('.expand-btn').forEach(btn => {
+    const target = document.getElementById(btn.getAttribute('aria-controls'));
+    if(!target) return;
+    btn.setAttribute('aria-expanded','false');
+    target.style.maxHeight = '0px';
     btn.addEventListener('click', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-
-      if (isExpanded) {
-        // Collapse
-        btn.setAttribute('aria-expanded', 'false');
-        targetContent.classList.remove('expanded');
-        targetContent.style.maxHeight = '0px';
-      } else {
-        // Expand
-        btn.setAttribute('aria-expanded', 'true');
-        targetContent.classList.add('expanded');
-
-        // Set maxHeight to the exact content height so nothing gets cut
-        targetContent.style.maxHeight = targetContent.scrollHeight + 'px';
-      }
-    });
-
-    // Keep height correct on resize (mobile / font scaling)
-    window.addEventListener('resize', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      if (isExpanded) {
-        targetContent.style.maxHeight = targetContent.scrollHeight + 'px';
-      }
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+      if(!expanded) { target.style.maxHeight = target.scrollHeight + 'px'; target.classList.add('expanded'); }
+      else { target.style.maxHeight = '0px'; target.classList.remove('expanded'); }
     });
   });
 }
 
-function initProjects() {
+function initProjectsFilterAndDetails() {
+  // filter
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-  
+  const cards = document.querySelectorAll('.project-card');
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      
       const filter = btn.getAttribute('data-filter');
-      
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        
-        if (filter === 'all' || filter === category) {
-          gsap.to(card, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.3 // Faster filter transition
-          });
-        } else {
-          gsap.to(card, {
-            opacity: 0.3,
-            scale: 0.95,
-            duration: 0.3 // Faster filter transition
-          });
-        }
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if(filter === 'all' || filter === cat) gsap.to(card, { opacity:1, scale:1, duration:0.2 });
+        else gsap.to(card, { opacity:0.3, scale:0.95, duration:0.2 });
       });
     });
   });
-  
-  projectCards.forEach(card => {
-    const overlay = card.querySelector('.project-overlay');
-    const details = card.querySelector('.project-details');
-    
-    overlay.addEventListener('click', () => {
-      if (details.style.display === 'block') {
-        gsap.to(details, {
-          height: 0,
-          opacity: 0,
-          duration: 0.2, // Faster close animation
-          onComplete: () => {
-            details.style.display = 'none';
-          }
-        });
-      } else {
-        details.style.display = 'block';
-        gsap.fromTo(details, 
-          { height: 0, opacity: 0 },
-          { 
-            height: 'auto', 
-            opacity: 1, 
-            duration: 0.3 // Faster open animation
-          }
-        );
-      }
-    });
-  });
-}
-
-function initFormEffects() {
-  const formInputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
-  
-  formInputs.forEach(input => {
-    input.addEventListener('focus', () => {
-      const icon = input.previousElementSibling;
-      if (icon && icon.tagName === 'I') {
-        gsap.to(icon, {
-          color: 'var(--primary-color)',
-          scale: 1.2,
-          duration: 0.2 // Faster focus effect
-        });
-      }
-    });
-    
-    input.addEventListener('blur', () => {
-      const icon = input.previousElementSibling;
-      if (icon && icon.tagName === 'I') {
-        gsap.to(icon, {
-          color: 'var(--text-secondary)',
-          scale: 1,
-          duration: 0.2 // Faster blur effect
-        });
-      }
-    });
+  // view details toggle
+  cards.forEach(card => {
+    const detailsDiv = card.querySelector('.project-details');
+    const existingBtn = card.querySelector('.view-details-btn');
+    if(!detailsDiv) return;
+    detailsDiv.style.display = 'none';
+    if(!existingBtn) {
+      const btn = document.createElement('button');
+      btn.textContent = 'View Details';
+      btn.classList.add('view-details-btn');
+      card.querySelector('.project-content').appendChild(btn);
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(detailsDiv.style.display === 'none') {
+          detailsDiv.style.display = 'block';
+          btn.textContent = 'Hide Details';
+        } else {
+          detailsDiv.style.display = 'none';
+          btn.textContent = 'View Details';
+        }
+      });
+    }
   });
 }
 
 function initMobileMenu() {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  
-  if (!menuToggle || !navLinks) return;
-  
-  menuToggle.addEventListener('click', () => {
-    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', !isExpanded);
-    navLinks.classList.toggle('active');
-  });
-  
-  const links = navLinks.querySelectorAll('a');
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      navLinks.classList.remove('active');
-    });
-  });
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav-links');
+  if(toggle && nav) {
+    toggle.addEventListener('click', () => { nav.classList.toggle('active'); });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => nav.classList.remove('active')));
+  }
 }
 
 function initScrollAnimations() {
-  gsap.utils.toArray('.section-title').forEach(title => {
-    gsap.from(title, {
-      y: 30,
-      opacity: 0,
-      duration: 0.5, // Faster scroll animation
-      scrollTrigger: {
-        trigger: title,
-        start: 'top bottom-=100'
-      }
+  gsap.utils.toArray('.section-title').forEach(title => { gsap.from(title, { y:30, opacity:0, duration:0.5, scrollTrigger: { trigger:title, start:'top bottom-=100' } }); });
+  gsap.utils.toArray('.project-card').forEach(card => { gsap.from(card, { y:40, opacity:0, duration:0.5, scrollTrigger: { trigger:card, start:'top bottom-=80' } }); });
+}
+
+function initScrollProgress() {
+  window.addEventListener('scroll', () => { const winScroll = document.documentElement.scrollTop; const height = document.documentElement.scrollHeight - window.innerHeight; const scrolled = (winScroll / height) * 100; document.querySelector('.scroll-progress-bar').style.width = scrolled + '%';; });
+}
+
+function initCsProjectsToggle() {
+  const btn = document.getElementById('toggleCsProjects');
+  const content = document.getElementById('csProjectsContent');
+  if(btn && content) {
+    btn.addEventListener('click', () => {
+      if(content.style.display === 'none') { content.style.display = 'block'; btn.innerHTML = '<i class="fas fa-chevron-up"></i>'; }
+      else { content.style.display = 'none'; btn.innerHTML = '<i class="fas fa-chevron-down"></i>'; }
     });
-  });
-  
-  gsap.utils.toArray('.project-card').forEach(card => {
-    gsap.from(card, {
-      y: 50,
-      opacity: 0,
-      duration: 0.5, // Faster scroll animation
-      scrollTrigger: {
-        trigger: card,
-        start: 'top bottom-=50'
-      }
-    });
-  });
-  
-  gsap.utils.toArray('.skill-category').forEach(category => {
-    gsap.from(category, {
-      x: -30,
-      opacity: 0,
-      duration: 0.5, // Faster scroll animation
-      scrollTrigger: {
-        trigger: category,
-        start: 'top bottom-=100'
-      }
-    });
-  });
+  }
 }
