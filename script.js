@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initMagneticButtons();
   initTypedEffect();
   initStatCounters();
-  initSkillChart();
   initSkillProgressBars();
+  initSkillChart();
+  fixSkillsChartHeight();
+	  window.addEventListener('load', fixSkillsChartHeight);
+	  window.addEventListener('resize', fixSkillsChartHeight);
   initExpandButtons();
   initProjectsFilterAndDetails();
   initMobileMenu();
@@ -70,6 +73,7 @@ function initLightweightNetwork() {
     mouseX = (e.clientX / window.innerWidth) * 2 - 1;
     mouseY = (e.clientY / window.innerHeight) * 2 - 1;
   });
+  
   function animate() {
     requestAnimationFrame(animate);
     camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
@@ -134,6 +138,8 @@ function initSkillProgressBars() {
   document.querySelectorAll('.progress').forEach(bar => {
 
     const finalWidth = bar.style.width; // get 95%, 90%, etc
+	    // Save the target before we reset the bar
+    bar.dataset.targetPercent = finalWidth;
     const textSpan = bar.querySelector('.progress-text');
 
     // start from 0
@@ -168,12 +174,77 @@ function initSkillProgressBars() {
 
 function initSkillChart() {
   const ctx = document.getElementById('skills-chart');
-  if(!ctx) return;
+  if (!ctx) return;
+
+  function extractSkillData() {
+    const result = {
+      networking: [],
+      systems: [],
+      programming: []
+    };
+
+    document.querySelectorAll('.skill-category').forEach(category => {
+      const type = category.dataset.category;
+      category.querySelectorAll('.progress').forEach(bar => {
+        const target = bar.dataset.targetPercent;
+        if (target) {
+          const val = parseInt(target);
+          if (!isNaN(val) && result[type]) {
+            result[type].push(val);
+          }
+        }
+      });
+    });
+
+    const avg = arr =>
+      arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
+
+    return [
+      avg(result.networking),
+      avg(result.systems),
+      avg(result.programming)
+    ];
+  }
+
+  const dataValues = extractSkillData();
+
   new Chart(ctx, {
     type: 'radar',
-    data: { labels: ['Programming','Networking','Databases','Web Dev','SysAdmin','Security'], datasets: [{ label: 'Skill Level', data: [85,82,78,80,86,75], backgroundColor: 'rgba(0,242,255,0.2)', borderColor: '#00f2ff', pointBackgroundColor: '#00f2ff', pointBorderColor: '#050b14' }] },
-    options: { scales: { r: { angleLines: { color: 'rgba(255,255,255,0.1)' }, grid: { color: 'rgba(255,255,255,0.1)' }, pointLabels: { color: '#eef5ff' }, ticks: { backdropColor: 'transparent', color: '#8aa9c9' } } }, plugins: { legend: { display: false } }, responsive: true, maintainAspectRatio: false }
+    data: {
+      labels: ['Networking', 'Systems', 'Scripting & Dev'],
+      datasets: [{
+        label: 'Skill Level',
+        data: dataValues,
+        backgroundColor: 'rgba(0,242,255,0.2)',
+        borderColor: '#00f2ff',
+        pointBackgroundColor: '#00f2ff',
+        pointBorderColor: '#050b14'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        r: {
+          angleLines: { color: 'rgba(255,255,255,0.1)' },
+          grid: { color: 'rgba(255,255,255,0.1)' },
+          pointLabels: { color: '#eef5ff' },
+          ticks: { backdropColor: 'transparent', color: '#8aa9c9' }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
   });
+}
+
+function fixSkillsChartHeight() {
+  const chartContainer = document.querySelector('.skills-chart-container');
+  const categories = document.querySelector('.skills-categories');
+
+  if (!chartContainer || !categories) return;
+
+  // match height exactly
+	chartContainer.style.height = (categories.offsetHeight - 10) + 'px';
 }
 
 function initExpandButtons() {
