@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initScrollProgress();
   initCsProjectsToggle();
+  initSkillAccordion();
+  initContactFormFeedback();
+  registerServiceWorker();
 });
 
 function initPreloader() {
@@ -313,12 +316,33 @@ function initMobileMenu() {
 }
 
 function initScrollAnimations() {
-  gsap.utils.toArray('.section-title').forEach(title => { gsap.from(title, { y:30, opacity:0, duration:0.5, scrollTrigger: { trigger:title, start:'top bottom-=100' } }); });
-  gsap.utils.toArray('.project-card').forEach(card => { gsap.from(card, { y:40, opacity:0, duration:0.5, scrollTrigger: { trigger:card, start:'top bottom-=80' } }); });
+  gsap.utils.toArray('.section-title').forEach(title => {
+    gsap.from(title, { y: 30, opacity: 0, duration: 0.6, scrollTrigger: { trigger: title, start: 'top bottom-=100' } });
+  });
+  gsap.utils.toArray('.project-card').forEach((card, i) => {
+    gsap.from(card, { y: 50, opacity: 0, duration: 0.5, delay: (i % 3) * 0.1, scrollTrigger: { trigger: card, start: 'top bottom-=60' } });
+  });
+  gsap.utils.toArray('.highlight-item').forEach((el, i) => {
+    gsap.from(el, { y: 30, opacity: 0, duration: 0.5, delay: i * 0.1, scrollTrigger: { trigger: el, start: 'top bottom-=60' } });
+  });
+  gsap.utils.toArray('.timeline-node').forEach((node, i) => {
+    gsap.from(node, { x: -30, opacity: 0, duration: 0.5, delay: i * 0.12, scrollTrigger: { trigger: node, start: 'top bottom-=60' } });
+  });
+  gsap.utils.toArray('.skill-category').forEach((cat, i) => {
+    gsap.from(cat, { y: 20, opacity: 0, duration: 0.4, delay: i * 0.1, scrollTrigger: { trigger: cat, start: 'top bottom-=60' } });
+  });
+  gsap.utils.toArray('.contact-method').forEach((el, i) => {
+    gsap.from(el, { x: -20, opacity: 0, duration: 0.4, delay: i * 0.1, scrollTrigger: { trigger: el, start: 'top bottom-=60' } });
+  });
 }
 
 function initScrollProgress() {
-  window.addEventListener('scroll', () => { const winScroll = document.documentElement.scrollTop; const height = document.documentElement.scrollHeight - window.innerHeight; const scrolled = (winScroll / height) * 100; document.querySelector('.scroll-progress-bar').style.width = scrolled + '%';; });
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.querySelector('.scroll-progress-bar').style.width = scrolled + '%';
+  });
 }
 
 function initCsProjectsToggle() {
@@ -329,5 +353,72 @@ function initCsProjectsToggle() {
       if(content.style.display === 'none') { content.style.display = 'block'; btn.innerHTML = '<i class="fas fa-chevron-up"></i>'; }
       else { content.style.display = 'none'; btn.innerHTML = '<i class="fas fa-chevron-down"></i>'; }
     });
+  }
+}
+
+/* ── NEW: Skill accordion toggle ── */
+function initSkillAccordion() {
+  document.querySelectorAll('.skill-category h3').forEach(header => {
+    header.style.cursor = 'pointer';
+    const details = header.closest('.skill-category').querySelector('.skill-details');
+    if (!details) return;
+    header.addEventListener('click', () => {
+      const cat = header.closest('.skill-category');
+      const isOpen = cat.classList.contains('accordion-open');
+      // close all
+      document.querySelectorAll('.skill-category').forEach(c => {
+        c.classList.remove('accordion-open');
+        const d = c.querySelector('.skill-details');
+        if (d) d.style.maxHeight = '0';
+      });
+      // open clicked if it was closed
+      if (!isOpen) {
+        cat.classList.add('accordion-open');
+        details.style.maxHeight = details.scrollHeight + 'px';
+      }
+    });
+    // Start all open (no max-height restriction by default)
+    details.style.maxHeight = details.scrollHeight + 'px';
+    header.closest('.skill-category').classList.add('accordion-open');
+  });
+}
+
+/* ── NEW: Contact form feedback ── */
+function initContactFormFeedback() {
+  const form = document.querySelector('.contact-form');
+  if (!form) return;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const origText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+        btn.style.background = '#00cc88';
+        form.reset();
+        setTimeout(() => { btn.innerHTML = origText; btn.style.background = ''; btn.disabled = false; }, 4000);
+      } else {
+        throw new Error('Network error');
+      }
+    } catch {
+      btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed — try email';
+      btn.style.background = '#cc3344';
+      setTimeout(() => { btn.innerHTML = origText; btn.style.background = ''; btn.disabled = false; }, 4000);
+    }
+  });
+}
+
+/* ── NEW: Service Worker registration ── */
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .catch(err => console.warn('SW registration failed:', err));
   }
 }
