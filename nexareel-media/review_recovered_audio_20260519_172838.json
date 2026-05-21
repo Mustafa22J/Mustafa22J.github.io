@@ -1,8 +1,8 @@
 {
   "review_id": "review_recovered_audio_20260519_172838",
-  "source_video": "/home/jawish/video-automation/assets/final_output/nexareel_merged_1779206855870_captioned_final_free_local.mp4",
+  "source_video": "/files/assets/final_output/nexareel_merged_1779206855870_captioned_final_free_local.mp4",
   "public_video_url": "https://mustafa22j.github.io/nexareel-media/review_recovered_audio_20260519_172838.mp4",
   "size_bytes": 2685221,
-  "already_uploaded": false,
-  "updated_at": "2026-05-21T19:20:47Z"
+  "updated_at": "2026-05-21T19:52:05Z",
+  "method": "github_api_from_n8n"
 }
