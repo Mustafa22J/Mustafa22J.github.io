@@ -1,4 +1,4 @@
-# Mustafa Jawish â€” Immersive Data-Center Portfolio
+# Mustafa Jawish Immersive Data-Center Portfolio
 
 [View the live portfolio](https://mustafa22j.github.io/)
 
