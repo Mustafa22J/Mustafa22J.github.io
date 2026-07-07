@@ -1,11 +1,15 @@
 {
-  "name": "Mustafa Jawish - IT Network Engineer",
+  "name": "Mustafa Jawish — Data-Center Portfolio",
   "short_name": "MJ Portfolio",
-  "description": "Portfolio of Mustafa Jawish, IT Networking and Systems Specialist",
-  "start_url": "/",
-  "scope": "/",
+  "description": "Immersive data-center portfolio of Mustafa Jawish — travel through a facility tracing a packet across networking projects, labs, and experience.",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
-  "background_color": "#050b14",
-  "theme_color": "#00f2ff",
-  "icons": []
+  "orientation": "any",
+  "background_color": "#05090f",
+  "theme_color": "#0a1622",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
 }
