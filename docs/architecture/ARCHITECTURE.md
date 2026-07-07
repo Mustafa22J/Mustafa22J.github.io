@@ -7,11 +7,11 @@ How the immersive data-center portfolio is put together.
 The site is a **static, single-page** experience: one generated `index.html`, a
 set of vanilla-JS modules, a vendored Three.js, and a DOM content layer. There is
 no server and no client framework. A Python script generates the page from a
-Claude Design export at *build* time; the *runtime* is plain HTML/CSS/JS.
+design source export at *build* time; the *runtime* is plain HTML/CSS/JS.
 
 ```
 ┌ build time ─────────────────────────────────────────────┐
-│ legacy/claude-design/claude-design-v4-source.html        │
+│ legacy/design-source/design-source-v4.html        │
 │        │  tools/build_facility.py (decode + patch + inject)
 │        ▼                                                  │
 │ index.html  +  assets/vendor/*  +  assets/facility/*      │

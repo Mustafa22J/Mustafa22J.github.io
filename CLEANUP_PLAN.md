@@ -14,7 +14,7 @@ root `index.html`.
 
 1. Final production · 2. Source · 3. Build system · 4. Required asset ·
 5. Documentation · 6. Final QA evidence · 7. Archived classic portfolio ·
-8. Legacy Claude Design reference · 9. Temporary · 10. Duplicate · 11. Obsolete ·
+8. Legacy design source reference · 9. Temporary · 10. Duplicate · 11. Obsolete ·
 12. Unknown
 
 ---
@@ -36,7 +36,7 @@ root `index.html`.
 | `service-worker.js` | 0.8 KB | 1 | `index.html` register | **Rewrite** | Cache immersive assets; offline fallback; bump version; don't cache failures or intercept Formspree. |
 
 > **Why `vendor/` stays combined:** `tools/build_facility.py` decodes every asset
-> in the Claude Design bundle (three, fonts, images) into `assets/vendor/` in one
+> in the design source bundle (three, fonts, images) into `assets/vendor/` in one
 > pass. Splitting portrait/datacenter into `assets/images/` would fight the build
 > decoder for no functional gain, so `vendor/` holds all bundle-decoded assets.
 
@@ -47,7 +47,7 @@ root `index.html`.
 | `tools/build_facility.py` | 15 KB | 3 | manual build | Keep (edit) | Generates root `index.html` from the v4 source. |
 | `tools/gen_world_geo.py` | 3.3 KB | 3 | manual | Keep | Regenerates `assets/facility/world-geo.js` from the geojson. |
 | `tools/shoot.sh` | 1 KB | 3 | manual QA | Keep | Headless-Chrome screenshot harness. |
-| `legacy/claude-design-v4-source.html` | 5.6 MB | 8/3 | `build_facility.py` input | **Move→`legacy/claude-design/`** | Required build input (reproducibility); update build `SRC` path. |
+| `legacy/design-source-v4.html` | 5.6 MB | 8/3 | `build_facility.py` input | **Move→`legacy/design-source/`** | Required build input (reproducibility); update build `SRC` path. |
 | `assets/data/ne_110m_land.geojson` | 138 KB | 2 | `gen_world_geo.py` | Keep | (also listed above) map source data. |
 | `.claude/launch.json` | 206 B | 3 | preview server | Keep | Local dev-server launch config. |
 | `.gitignore` | 27 B | 3 | git | Keep (edit) | Ignores `shots/`, `node_modules`, `.env`. |
@@ -69,12 +69,12 @@ Verified: `facility.html` references **none** of these (grep count 0 for
 | `Mustafa_Jawish_IT_Networking_CV.pdf` (root dup) | 97 KB | 10 | Copy into `legacy/classic-portfolio/` then remove root dup | Root résumé is the classic copy; canonical lives at `assets/`. |
 | (new) `legacy/classic-portfolio/README.md` | new | 5 | Create | Describe the archived classic site + original root paths. |
 
-## D. Legacy Claude Design reference — MOVE to `legacy/claude-design/`
+## D. Legacy design source reference — MOVE to `legacy/design-source/`
 
 | Path | Size | Class | Action | Reason |
 |---|---|---|---|---|
-| `legacy/claude-design-v4-source.html` | 5.6 MB | 8 | Move to `legacy/claude-design/` | Canonical v4 bundle; also the build input (update `SRC`). |
-| `legacy/v4-document.html` | 253 KB | 8 | Move to `legacy/claude-design/` | Readable extract of the v4 document (audit/reference). |
+| `legacy/design-source-v4.html` | 5.6 MB | 8 | Move to `legacy/design-source/` | Canonical v4 bundle; also the build input (update `SRC`). |
+| `legacy/design-document-v4.html` | 253 KB | 8 | Move to `legacy/design-source/` | Readable extract of the v4 document (audit/reference). |
 
 ## E. Documentation — KEEP / CREATE
 

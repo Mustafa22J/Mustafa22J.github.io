@@ -1,145 +1,201 @@
-# Mustafa Jawish — Immersive Data-Center Portfolio
+# Mustafa Jawish â€” Immersive Data-Center Portfolio
 
-An immersive, single-page portfolio rendered as a **3D data-center facility**. The
-visitor scrolls through the building, tracing a packet from the core router out to
-the WAN edge; each chapter (about, OSI stack, skills, education, projects, NOC,
-experience, certifications, lab, résumé, contact) is a physical area with
-rack-mounted, smart-glass displays. A full DOM layer mirrors every chapter so the
-content is accessible, keyboard-navigable, and works without WebGL.
+[View the live portfolio](https://mustafa22j.github.io/)
 
-- **Live entry point:** `index.html` (repository root)
-- **Purpose:** portfolio for Mustafa Jawish — IT Support Coordinator & Computer
-  Systems Technician – Networking student (Algonquin College, Ottawa).
-- **No backend, no build step to *run*** — it is a static site. A Python build
-  script *generates* the page; the deployed output is plain HTML/CSS/JS.
+An immersive, single-page portfolio presented as a 3D data-center facility. Visitors move through the building while following a packet journey from the core router to the WAN edge. Each chapter is represented by physical networking equipment and a rack-mounted smart-glass interface.
+
+The experience includes About, the OSI model, technical skills, education, projects, troubleshooting scenarios, professional experience, certifications, an interactive networking lab, rÃ©sumÃ© access, and contact tools.
+
+A complete semantic DOM layer mirrors the interactive experience, keeping the content accessible, keyboard-navigable, and available when WebGL is disabled.
+
+## Professional focus
+
+Mustafa Jawish is a Canadian citizen based in Ottawa, Ontario, working as an IT Support Coordinator while completing the Computer Systems Technician â€” Networking program at Algonquin College.
+
+The portfolio highlights practical experience with:
+
+- Enterprise networking and routing
+- Windows Server and identity administration
+- Linux systems and services
+- IT support and structured troubleshooting
+- Network security and packet analysis
+- PowerShell, Bash, and Python automation
+- Virtualization and infrastructure operations
+
+## Technical highlights
+
+- Immersive Three.js data-center environment
+- Twelve-stage packet journey through the facility
+- Consolidated seven-layer OSI workstation
+- Structured fibre system with SFP+ and LC components
+- Rack-mounted chapter interfaces
+- Interactive project explorer
+- Troubleshooting and NOC scenarios
+- Networking calculators and protocol references
+- Offline world map and simulated WAN transfer
+- Progressive Web App support
+- Reduced-motion and WebGL fallback modes
+- Semantic and keyboard-accessible content layer
 
 ## Technology
 
-- **Three.js r0.160**, vendored locally at `assets/vendor/three.module.js` and
-  imported as a blob — **no CDN**, fully offline-capable.
-- **Vanilla JS** modules under `assets/facility/` (no framework, no runtime
-  dependencies). They register on `window.FacilityStations` and are orchestrated
-  by `facility-init.js`.
-- **Progressive Web App:** `manifest.json` + `service-worker.js` (offline shell,
-  runtime asset cache) + generated icons under `assets/icons/`.
-- **Contact:** real [Formspree](https://formspree.io) submission
-  (`https://formspree.io/f/mvgwayna`); a successful response gates the simulated
-  WAN transfer animation. The world-map journey is clearly labelled a
-  **simulated visualization** — only the form submission itself is real.
+- **Three.js r0.160**, vendored locally under `assets/vendor/`
+- **Vanilla JavaScript modules** under `assets/facility/`
+- **HTML and CSS** for the accessible content layer
+- **Python standard-library build tooling**
+- **Progressive Web App** using `manifest.json` and `service-worker.js`
+- **Natural Earth geography data** for the offline WAN map
+- **Formspree** for the real contact-form submission
+
+No runtime backend or npm installation is required. The deployed site is static HTML, CSS, and JavaScript. A Python utility reproducibly regenerates the canonical `index.html`.
 
 ## Architecture
 
-The site is **generated at build time** from a Claude Design export:
+The deployed site is generated from an archived design-source bundle:
 
+```text
+legacy/design-source/design-source-v4.html
+                    |
+                    |  tools/build_facility.py
+                    v
+index.html
 ```
-legacy/claude-design/claude-design-v4-source.html   (the design "bundle")
-        │  tools/build_facility.py
-        ▼
-index.html   (self-contained: base scene + injected facility modules + PWA head)
-```
 
-`build_facility.py`:
-1. Decodes the bundle's base64/gzip assets into `assets/vendor/` (Three.js, fonts,
-   portrait, data-center backdrop) and mirrors the résumé into `assets/`.
-2. String-patches the base scene IIFE to expose internals and per-frame updater
-   hooks, replaces the floating hologram, removes the legacy hanging fibre, and
-   docks each chapter's DOM panel opposite its rack.
-3. Injects the facility module `<script>` tags, the accessibility CSS/skip-link,
-   the PWA `<head>` (manifest, theme-color, icons, `<noscript>` fallback), and the
-   service-worker registration.
-4. Writes `index.html` **atomically** (temp file → validate → `os.replace`).
+The build process:
 
-Key runtime modules (`assets/facility/`):
+1. Extracts the locally bundled Three.js library, fonts, portrait, and data-center imagery.
+2. Generates the canonical static page.
+3. Injects the facility modules and accessibility layer.
+4. Applies the rack, OSI, cabling, camera, panel, contact, and WAN systems.
+5. Adds manifest metadata, icons, fallback content, and service-worker registration.
+6. Validates and atomically replaces `index.html`.
 
-| Module | Role |
+## Main runtime modules
+
+| Module | Responsibility |
 |---|---|
-| `facility-route.js` | Central route map: 12 chapter nodes, world Z positions, self-check. |
-| `facility-common.js` | Shared helpers (labels, LEDs, SFP cages, screens). |
-| `core-cabinet.js`, `administrator-station.js` | Hero core + identity station. |
-| `osi-stations.js`, `osi-state.js` | One consolidated OSI bay + its 7-layer console. |
-| `structured-cabling.js` | Overhead ladder racks, trays, SFP+/LC connector assemblies. |
-| `portfolio-stations.js` | Skills / education / projects / NOC / experience / certs / lab / résumé equipment. |
-| `rack-interface-system.js` | Rack-origin telescoping smart-glass display. |
-| `panel-tabs.js` | Restructures content-heavy panels into tab/selector interfaces. |
-| `world-geo.js` | Offline Equal-Earth projection of Natural Earth 110m land. |
-| `wan-gateway.js` | WAN room, wall-mounted world map, transfer state machine. |
-| `contact-wan-zones.js` | Contact two-zone layout (console + gap + in-bezel map). |
-| `camera-director.js` | Scroll-driven, human-height camera choreography. |
-| `facility-init.js` | Orchestrates all of the above + nav scroll-spy + QA params. |
+| `facility-route.js` | Twelve-node chapter route and world positions |
+| `facility-common.js` | Shared screens, labels, LEDs, and equipment helpers |
+| `core-cabinet.js` | Hero core-router station |
+| `administrator-station.js` | About and identity station |
+| `osi-stations.js` | Consolidated physical OSI workstation |
+| `osi-state.js` | Seven-layer OSI interaction model |
+| `structured-cabling.js` | Managed fibre routes, trays, connectors, and transceivers |
+| `portfolio-stations.js` | Skills, education, projects, NOC, experience, certifications, lab, and rÃ©sumÃ© stations |
+| `rack-interface-system.js` | Rack-mounted smart-glass deployment |
+| `panel-tabs.js` | Compact tab and selector interfaces |
+| `world-geo.js` | Offline world-map geometry |
+| `wan-gateway.js` | WAN room and transfer-state visualization |
+| `contact-wan-zones.js` | Contact terminal and map separation |
+| `camera-director.js` | Scroll-driven camera choreography |
+| `facility-init.js` | Runtime orchestration and navigation state |
 
-## Build & preview
+## Build and preview
 
-```bash
-# regenerate index.html from the design source (Python 3, stdlib only)
+Requirements:
+
+- Python 3
+- A modern browser
+- No Node.js or package installation required
+
+Regenerate the site:
+
+```powershell
 python tools/build_facility.py
+```
 
-# regenerate the offline world-map data from Natural Earth (optional)
-python tools/gen_world_geo.py
+Preview locally:
 
-# regenerate the PWA icons (optional)
-python tools/gen_icons.py
-
-# preview locally (any static server); then open http://localhost:8123/
+```powershell
 python -m http.server 8123
 ```
 
-There is **no `npm install`** — the site ships as static files.
+Then open:
 
-## Deployment (static / GitHub Pages)
-
-All asset paths are **relative**, and the manifest `start_url`/`scope` are `"."`,
-so the site works both at a domain root and at a GitHub Pages *project* subpath
-(`https://<user>.github.io/<repo>/`). To deploy:
-
-1. Copy the repository contents into your portfolio repo (see
-   `DEPLOYMENT_CHECKLIST.md`).
-2. Push to the branch GitHub Pages serves (e.g. `main`), or enable Pages on that
-   branch/folder.
-3. Hard-refresh once after deploy so the service worker updates.
-
-## Features & controls
-
-- **Performance:** shared geometry/materials, `InstancedMesh` for repeated parts,
-  cached per-frame allocations, an on-screen `QUALITY: AUTO` control, and a `CALM`
-  mode. The contact world-map only animates while on-screen.
-- **Reduced motion:** honored via `prefers-reduced-motion` (calm defaults, no
-  packet pulsing, no tab transitions).
-- **WebGL fallback:** if WebGL is unavailable the 3D scene is hidden and the DOM
-  content renders over a static data-center backdrop — all content stays readable.
-- **Accessibility:** skip link, semantic landmarks, single H1 + ordered headings,
-  labelled form fields, `role=tab`/`aria-selected` tab interfaces, `aria-current`
-  nav scroll-spy, `aria-live` status regions, and the decorative canvas hidden
-  from assistive tech.
-
-## Repository layout
-
+```text
+http://localhost:8123/
 ```
-index.html                 canonical immersive site (generated)
-manifest.json              PWA manifest
-service-worker.js          offline service worker
-README.md · CLEANUP_PLAN.md · DEPLOYMENT_CHECKLIST.md
+
+Optional asset-generation utilities:
+
+```powershell
+python tools/gen_world_geo.py
+python tools/gen_icons.py
+```
+
+## Accessibility and resilience
+
+The portfolio includes:
+
+- Skip navigation
+- Semantic landmarks
+- Ordered heading structure
+- Keyboard-accessible tabs and controls
+- Visible focus indicators
+- Form labels and accessible status messages
+- `aria-current`, `aria-selected`, and `aria-live` states
+- Reduced-motion support
+- Static fallback content when WebGL is unavailable
+- Offline support through the service worker
+
+## Performance
+
+Performance controls include:
+
+- Shared geometries and materials
+- Instanced repeated equipment
+- Cached per-frame allocations
+- Adaptive rendering quality
+- A calm mode
+- Visibility-aware animation
+- Reduced detail on constrained devices
+
+## Contact and WAN behavior
+
+The contact form submits through Formspree. A successful form response activates a simulated WAN packet journey on the world map.
+
+The map is clearly presented as a visualization. The contact submission is real; the WAN transfer animation is simulated.
+
+## Repository structure
+
+```text
+index.html
+manifest.json
+service-worker.js
+README.md
+CLEANUP_PLAN.md
+DEPLOYMENT_CHECKLIST.md
+
 assets/
-  facility/                runtime JS modules
-  vendor/                  Three.js, fonts, portrait, data-center backdrop (bundle-decoded)
-  data/                    Natural Earth land geojson (map source)
-  icons/                   PWA icons
-  Mustafa_Jawish_IT_Networking_CV.pdf   canonical résumé
+  facility/
+  vendor/
+  data/
+  icons/
+  Mustafa_Jawish_IT_Networking_CV.pdf
+
 tools/
-  build_facility.py        generates index.html
-  gen_world_geo.py         generates world-geo.js
-  gen_icons.py             generates PWA icons
-  shoot.sh                 headless-Chrome screenshot harness
+  build_facility.py
+  gen_world_geo.py
+  gen_icons.py
+  shoot.sh
+
 docs/
-  architecture/            architecture notes
-  qa/final/                final QA screenshot evidence
+  architecture/
+  qa/
+
 legacy/
-  classic-portfolio/       the previous conventional portfolio (archived)
-  claude-design/           the Claude Design v4 source + readable extract
+  classic-portfolio/
+  design-source/
 ```
+
+The repository also retains the NexaReel legal pages and hosted media paths used by the separate video-automation workflow.
 
 ## Content integrity
 
-All content is real: the projects link to actual GitHub repositories, the
-subnet calculator is mathematically correct (including /31 point-to-point and /32
-host routes), the résumé downloads the real CV, and no experience or credential is
-fabricated. The WAN world map is a simulation and is labelled as such.
+The portfolio uses real professional, academic, and project information. Project buttons link to existing GitHub repositories. The rÃ©sumÃ© downloads the current CV. Networking calculators include explicit handling for `/31` point-to-point and `/32` host routes.
+
+No employment history, project, certification, or technical result is intentionally fabricated.
+
+## Development note
+
+Development included AI-assisted prototyping. Final content selection, architecture, testing, validation, repository management, and deployment were directed and approved by Mustafa Jawish.

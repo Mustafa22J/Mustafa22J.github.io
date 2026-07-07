@@ -3,7 +3,7 @@ import json, os, re, base64, shutil, gzip
 # repo root derived from this script's location (tools/build_facility.py) so the build is
 # portable — it works from any checkout, not just one hardcoded machine path.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BUNDLE = os.path.join(ROOT, "legacy", "claude-design", "claude-design-v4-source.html")
+BUNDLE = os.path.join(ROOT, "legacy", "design-source", "design-source-v4.html")
 VENDOR = os.path.join(ROOT, "assets", "vendor")
 FONTS = os.path.join(VENDOR, "fonts")
 # clean any prior mislabeled output
