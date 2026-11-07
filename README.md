@@ -4,13 +4,13 @@
 
 An immersive, single-page portfolio presented as a 3D data-center facility. Visitors move through the building while following a packet journey from the core router to the WAN edge. Each chapter is represented by physical networking equipment and a rack-mounted smart-glass interface.
 
-The experience includes About, the OSI model, technical skills, education, projects, troubleshooting scenarios, professional experience, certifications, an interactive networking lab, rÃ©sumÃ© access, and contact tools.
+The experience includes About, the OSI model, technical skills, education, projects, troubleshooting scenarios, professional experience, certifications, an interactive networking lab, résumé access, and contact tools.
 
 A complete semantic DOM layer mirrors the interactive experience, keeping the content accessible, keyboard-navigable, and available when WebGL is disabled.
 
 ## Professional focus
 
-Mustafa Jawish is a Canadian citizen based in Ottawa, Ontario, working as an IT Support Coordinator while completing the Computer Systems Technician â€” Networking program at Algonquin College.
+Mustafa Jawish is a Canadian citizen based in Ottawa, Ontario, working as an IT Support Coordinator while completing the Computer Systems Technician — Networking program at Algonquin College.
 
 The portfolio highlights practical experience with:
 
@@ -81,7 +81,7 @@ The build process:
 | `osi-stations.js` | Consolidated physical OSI workstation |
 | `osi-state.js` | Seven-layer OSI interaction model |
 | `structured-cabling.js` | Managed fibre routes, trays, connectors, and transceivers |
-| `portfolio-stations.js` | Skills, education, projects, NOC, experience, certifications, lab, and rÃ©sumÃ© stations |
+| `portfolio-stations.js` | Skills, education, projects, NOC, experience, certifications, lab, and résumé stations |
 | `rack-interface-system.js` | Rack-mounted smart-glass deployment |
 | `panel-tabs.js` | Compact tab and selector interfaces |
 | `world-geo.js` | Offline world-map geometry |
@@ -192,10 +192,11 @@ The repository also retains the NexaReel legal pages and hosted media paths used
 
 ## Content integrity
 
-The portfolio uses real professional, academic, and project information. Project buttons link to existing GitHub repositories. The rÃ©sumÃ© downloads the current CV. Networking calculators include explicit handling for `/31` point-to-point and `/32` host routes.
+The portfolio uses real professional, academic, and project information. Project buttons link to existing GitHub repositories. The résumé downloads the current CV. Networking calculators include explicit handling for `/31` point-to-point and `/32` host routes.
 
 No employment history, project, certification, or technical result is intentionally fabricated.
 
 ## Development note
 
 Development included AI-assisted prototyping. Final content selection, architecture, testing, validation, repository management, and deployment were directed and approved by Mustafa Jawish.
+

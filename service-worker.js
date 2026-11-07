@@ -6,7 +6,7 @@
      (GitHub / LinkedIn), and never caches non-200 or opaque responses.
    - Bumps the cache version and deletes old caches on activate, so a stale classic site is
      never served after the migration. Relative scope → works from a GitHub Pages subpath. */
-const CACHE = 'mj-facility-v1';
+const CACHE = 'mj-facility-v2-profile-accuracy';
 const CORE = ['./', './index.html', './manifest.json',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png', './assets/icons/favicon-32.png'];
 
@@ -47,3 +47,4 @@ self.addEventListener('fetch', (event) => {
     caches.match(req).then((hit) => hit || fetch(req).then((res) => cachePut(req, res)).catch(() => hit))
   );
 });
+

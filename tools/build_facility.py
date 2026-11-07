@@ -36,6 +36,14 @@ def payload_after(kind):
 manifest = json.loads(payload_after("manifest"))
 ext      = json.loads(payload_after("ext_resources"))
 doc      = json.loads(payload_after("template"))
+# Keep approved profile copy accurate when rebuilding the retained design source.
+with open(os.path.join(ROOT, "tools", "profile-content.json"), encoding="utf-8") as f:
+    for correction in json.load(f):
+        old, new = correction["old"], correction["new"]
+        actual = doc.count(old)
+        if actual != correction["count"]:
+            raise ValueError(f"Profile source changed: expected {correction['count']} matches, got {actual}: {old[:80]}")
+        doc = doc.replace(old, new)
 three_uuid = next(e["uuid"] for e in ext if e["id"] == "three")
 
 def sniff_font(raw):
@@ -294,3 +302,4 @@ externals = sorted(set(re.findall(r'https?://[^\s"\'()]+', out)))
 print("\nREMAINING EXTERNAL URLs (should be only formspree/github/linkedin + unused three CDN fallback):")
 for u in externals: print("  ", u)
 print("\nindex.html bytes:", os.path.getsize(os.path.join(ROOT, "index.html")))
+
