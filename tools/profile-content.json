@@ -1,0 +1,77 @@
+[
+  {
+    "old": "OPEN TO NEXT CO-OP TERM",
+    "new": "IT SUPPORT &amp; INFRASTRUCTURE",
+    "count": 1
+  },
+  {
+    "old": "<span>Certifications</span>",
+    "new": "<span>Course credentials</span>",
+    "count": 1
+  },
+  {
+    "old": "Automated AD user management and backup/restore workflows.",
+    "new": "Automated local Windows account management and documented backup/restore workflows.",
+    "count": 1
+  },
+  {
+    "old": "        <div class=\"proj\" data-cat=\"scripting\"><div class=\"top\" style=\"background:linear-gradient(120deg,#7fd4e622,rgba(9,15,26,.5))\"><span class=\"ic\" style=\"color:#7fd4e6\"><i class=\"fab fa-windows\"></i></span><span class=\"cat\" style=\"color:#7fd4e6\">SCRIPTING</span></div><div class=\"bd\"><h4>PowerShell User Management</h4><div class=\"chips\" style=\"margin-bottom:10px\"><span class=\"chip\">PowerShell</span><span class=\"chip\">Active Directory</span><span class=\"chip\">Automation</span></div><p>Automated Active Directory account lifecycle management with PowerShell.</p><details style=\"--acc:#7fd4e6\"><summary style=\"padding:8px 0;font-size:12.5px\"><span style=\"color:#9fd8e6\">Details</span><i class=\"fas fa-chevron-down chev\"></i></summary><div class=\"det-bd\" style=\"padding:8px 0 0;border:none\"><p>Bulk user creation, modification, permission management and reporting with structured error handling and logging — reducing admin overhead and improving consistency.</p></div></details><div class=\"foot\"><a class=\"gh\" href=\"https://github.com/Mustafa22J/PowerShell-User-Management\" target=\"_blank\" rel=\"noopener\"><i class=\"fab fa-github\"></i> GitHub</a></div></div></div>",
+    "new": "        <div class=\"proj\" data-cat=\"scripting\"><div class=\"top\" style=\"background:linear-gradient(120deg,#7fd4e622,rgba(9,15,26,.5))\"><span class=\"ic\" style=\"color:#7fd4e6\"><i class=\"fab fa-windows\"></i></span><span class=\"cat\" style=\"color:#7fd4e6\">SCRIPTING</span></div><div class=\"bd\"><h4>PowerShell User Management</h4><div class=\"chips\" style=\"margin-bottom:10px\"><span class=\"chip\">PowerShell</span><span class=\"chip\">Local Accounts</span><span class=\"chip\">Automation</span></div><p>PowerShell automation for local Windows users and groups.</p><details style=\"--acc:#7fd4e6\"><summary style=\"padding:8px 0;font-size:12.5px\"><span style=\"color:#9fd8e6\">Details</span><i class=\"fas fa-chevron-down chev\"></i></summary><div class=\"det-bd\" style=\"padding:8px 0 0;border:none\"><p>Created and removed local Windows users, managed local group membership, imported users from CSV, and logged actions.</p></div></details><div class=\"foot\"><a class=\"gh\" href=\"https://github.com/Mustafa22J/PowerShell-User-Management\" target=\"_blank\" rel=\"noopener\"><i class=\"fab fa-github\"></i> GitHub</a></div></div></div>",
+    "count": 1
+  },
+  {
+    "old": "        <div class=\"proj\" data-cat=\"system\"><div class=\"top\" style=\"background:linear-gradient(120deg,#e6b84f22,rgba(9,15,26,.5))\"><span class=\"ic\" style=\"color:#e6b84f\"><i class=\"fab fa-linux\"></i></span><span class=\"cat\" style=\"color:#e6b84f\">LINUX</span></div><div class=\"bd\"><h4>Linux Network Services</h4><div class=\"chips\" style=\"margin-bottom:10px\"><span class=\"chip\">SSH</span><span class=\"chip\">iptables</span><span class=\"chip\">BIND</span><span class=\"chip\">Apache</span></div><p>Secure remote access, firewall policy, DNS, and additional Linux services.</p><details style=\"--acc:#e6b84f\"><summary style=\"padding:8px 0;font-size:12.5px\"><span style=\"color:#9fd8e6\">Details</span><i class=\"fas fa-chevron-down chev\"></i></summary><div class=\"det-bd\" style=\"padding:8px 0 0;border:none\"><p>SSH hardening, iptables filtering, BIND DNS, Apache SSL vhosts, Postfix mail, LDAP, Samba and NFS on RHEL; validated with ss, dig, nc, curl and systemctl.</p></div></details><div class=\"foot\"><a class=\"gh\" href=\"https://github.com/Mustafa22J/Linux-server-admin-containers-labs\" target=\"_blank\" rel=\"noopener\"><i class=\"fab fa-github\"></i> GitHub</a></div></div></div>",
+    "new": "        <div class=\"proj\" data-cat=\"system\"><div class=\"top\" style=\"background:linear-gradient(120deg,#e6b84f22,rgba(9,15,26,.5))\"><span class=\"ic\" style=\"color:#e6b84f\"><i class=\"fab fa-linux\"></i></span><span class=\"cat\" style=\"color:#e6b84f\">LINUX</span></div><div class=\"bd\"><h4>Linux Network Services</h4><div class=\"chips\" style=\"margin-bottom:10px\"><span class=\"chip\">SSH</span><span class=\"chip\">iptables</span><span class=\"chip\">BIND</span><span class=\"chip\">RHEL</span></div><p>Academic RHEL lab covering SSH, firewall rules, and BIND DNS.</p><details style=\"--acc:#e6b84f\"><summary style=\"padding:8px 0;font-size:12.5px\"><span style=\"color:#9fd8e6\">Details</span><i class=\"fas fa-chevron-down chev\"></i></summary><div class=\"det-bd\" style=\"padding:8px 0 0;border:none\"><p>Configured SSH authentication, iptables access rules, and a BIND forward zone; documented service checks and troubleshooting with ss, dig, netcat, and systemctl.</p></div></details><div class=\"foot\"><a class=\"gh\" href=\"https://github.com/Mustafa22J/Linux-Network-Services\" target=\"_blank\" rel=\"noopener\"><i class=\"fab fa-github\"></i> GitHub</a></div></div></div>",
+    "count": 1
+  },
+  {
+    "old": "<h2 class=\"title\">Certifications.</h2>",
+    "new": "<h2 class=\"title\">Course credentials.</h2>",
+    "count": 1
+  },
+  {
+    "old": ">Cisco Networking Academy</p>",
+    "new": ">Cisco Networking Academy · Course credential</p>",
+    "count": 2
+  },
+  {
+    "old": "> AUTHENTICATED</div>",
+    "new": "> COURSE COMPLETED</div>",
+    "count": 3
+  },
+  {
+    "old": ">CERTIFICATIONS</div>",
+    "new": ">COURSE CREDENTIALS</div>",
+    "count": 1
+  },
+  {
+    "old": "CCNA · Packet Tracer · IBM GenAI",
+    "new": "Cisco Networking Academy · IBM SkillsBuild",
+    "count": 1
+  },
+  {
+    "old": "Ottawa, ON 🇨🇦 · Available for co-op · May–Dec 2026",
+    "new": "Ottawa, ON 🇨🇦 · IT Support Coordinator (Student) · Diploma expected April 2027",
+    "count": 1
+  },
+  {
+    "old": "Co-op · May–Dec 2026",
+    "new": "Discuss availability",
+    "count": 1
+  },
+  {
+    "old": "The packet's final hop. Actively seeking an IT / networking co-op for 2026 — the quickest way to reach me is email or LinkedIn.",
+    "new": "The packet's final hop. Interested in IT support, systems administration, networking, and infrastructure opportunities — reach me by email or LinkedIn.",
+    "count": 1
+  },
+  {
+    "old": "https://linkedin.com/in/mustafa-jawish-959b45225",
+    "new": "https://www.linkedin.com/in/mustafajawish/",
+    "count": 2
+  },
+  {
+    "old": ">in/mustafa-jawish</span>",
+    "new": ">in/mustafajawish</span>",
+    "count": 1
+  }
+]

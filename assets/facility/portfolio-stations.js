@@ -24,7 +24,7 @@ window.FacilityStations = window.FacilityStations || {};
       experience:     { node: 13, kicker: 'OPS CORRIDOR', title: 'Experience', accent: '#35e0f1', kind: 'corridor',
         rows: [['ROLE', 'IT Support Coordinator'], ['PRIOR', 'Shift/Team Lead'], ['SKILLS', 'leadership · comms'], ['ENV', 'Windows · Linux']] },
       certifications: { node: 14, kicker: 'CREDENTIAL SECURITY', title: 'Credentials', accent: '#a98cf0', kind: 'vault',
-        rows: [['CCNA', 'SRWE · Jan 2026'], ['CISCO', 'Packet Tracer · 2024'], ['STATUS', 'VERIFIED']] },
+        rows: [['NETACAD', 'SRWE · Jan 2026'], ['CISCO', 'Packet Tracer · 2024'], ['TYPE', 'Course credentials']] },
       lab:            { node: 15, kicker: 'DIAGNOSTIC LAB', title: 'Networking Lab', accent: '#35e0f1', kind: 'lab',
         rows: [['SUBNET', 'calculator'], ['DHCP', 'DORA'], ['PORTS', 'common'], ['CMDS', 'diagnostic']] },
       resume:         { node: 16, kicker: 'SECURE VAULT', title: 'Résumé Vault', accent: '#43e0a8', kind: 'vault',
@@ -129,3 +129,4 @@ window.FacilityStations = window.FacilityStations || {};
     function hex(s) { return parseInt(s.replace('#', ''), 16); }
   };
 })(window.FacilityStations);
+
